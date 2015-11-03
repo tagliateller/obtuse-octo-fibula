@@ -50,10 +50,108 @@ sudo chmod 755 /etc/origin/master
 40.114.4.137 ist die public ip
 10.0.0.11 ist die private ip
 
-[azureuser@demov3-master ~]$ sudo oadm ca create-master-certs --hostnames=40.114.4.137,10.0.0.11 --master=https://10.0.0.11:8443 --public-master=https://40.114
-.4.137:8443 --cert-dir=/etc/origin/master --overwrite=false
+sudo oadm ca create-master-certs --hostnames=40.114.4.137,10.0.0.11 --master=https://10.0.0.11:8443 --public-master=https://40.114.4.137:8443 --cert-dir=/etc/origin/master --overwrite=false 
+
+Ausgabe:
+
 Generated new key pair as /etc/origin/master/serviceaccounts.public.key and /etc/origin/master/serviceaccounts.private.key
-[azureuser@demov3-master ~]$
+
+TASK: [os_firewall | Install iptables packages] *******************************
+
+sudo yum -y install iptables 
+--> ist bereits installiert !!
+sudo yum -y install iptables-services
+--> wird installiert
+rpm -q firewalld 
+--> ist bereits installiert
+
+TASK: [os_firewall | Ensure firewalld service is not enabled] ***************** 
+
+sudo systemctl stop firewalld 
+sudo systemctl status firewalld  
+--> loaded/disabled
+
+TASK: [os_firewall | Start and enable iptables service] *********************** 
+
+sudo systemctl start iptables
+
+TASK: [os_firewall | Mask firewalld service] **********************************
+sudo systemctl mask firewalld
+
+TASK: [os_firewall | Add iptables allow rules] ******************************** 
+
+- name: Add iptables allow rules
+  os_firewall_manage_iptables:
+    name: "{{ item.service }}"
+    action: add
+    protocol: "{{ item.port.split('/')[1] }}"
+    port: "{{ item.port.split('/')[0] }}"
+  with_items: os_firewall_allow
+  when: os_firewall_allow is defined
+
+# TODO: update setting these values based on the facts
+os_firewall_allow:
+- service: etcd embedded
+  port: 4001/tcp
+- service: api server https
+  port: 8443/tcp
+- service: dns tcp
+  port: 53/tcp
+- service: dns udp
+  port: 53/udp
+- service: Fluentd td-agent tcp
+  port: 24224/tcp
+- service: Fluentd td-agent udp
+  port: 24224/udp
+- service: pcsd
+  port: 2224/tcp
+- service: Corosync UDP
+  port: 5404/udp
+- service: Corosync UDP
+  port: 5405/udp
+
+changed: [demov3-master-9986c] => (item={'port': '4001/tcp', 'service': 'etcd embedded'}) => {"changed": true, "item": {"port": "4001/tcp", "service": "etcd embedded"}, "output": ["", "Successfully created chain OS_FIREWALL_ALLOW", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n", "", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n", "", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n"]}
+
+changed: [demov3-master-9986c] => (item={'port': '8443/tcp', 'service': 'api server https'}) => {"changed": true, "item": {"port": "8443/tcp", "service": "api server https"}, "output": ["", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n"]}
+
+changed: [demov3-master-9986c] => (item={'port': '53/tcp', 'service': 'dns tcp'}) => {"changed": true, "item": {"port": "53/tcp", "service": "dns tcp"}, "output": ["", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n"]}
+
+changed: [demov3-master-9986c] => (item={'port': '53/udp', 'service': 'dns udp'}) => {"changed": true, "item": {"port": "53/udp", "service": "dns udp"}, "output": ["", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n"]}
+
+changed: [demov3-master-9986c] => (item={'port': '24224/tcp', 'service': 'Fluentd td-agent tcp'}) => {"changed": true, "item": {"port": "24224/tcp", "service": "Fluentd td-agent tcp"}, "output": ["", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n"]}
+
+changed: [demov3-master-9986c] => (item={'port': '24224/udp', 'service': 'Fluentd td-agent udp'}) => {"changed": true, "item": {"port": "24224/udp", "service": "Fluentd td-agent udp"}, "output": ["", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n"]}
+
+changed: [demov3-master-9986c] => (item={'port': '2224/tcp', 'service': 'pcsd'}) => {"changed": true, "item": {"port": "2224/tcp", "service": "pcsd"}, "output": ["", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n"]}
+
+changed: [demov3-master-9986c] => (item={'port': '5404/udp', 'service': 'Corosync UDP'}) => {"changed": true, "item": {"port": "5404/udp", "service": "Corosync UDP"}, "output": ["", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n"]}
+
+changed: [demov3-master-9986c] => (item={'port': '5405/udp', 'service': 'Corosync UDP'}) => {"changed": true, "item": {"port": "5405/udp", "service": "Corosync UDP"}, "output": ["", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n"]}
+
+- name: Remove iptables rules
+  os_firewall_manage_iptables:
+    name: "{{ item.service }}"
+    action: remove
+    protocol: "{{ item.port.split('/')[1] }}"
+    port: "{{ item.port.split('/')[0] }}"
+  with_items: os_firewall_deny
+  when: os_firewall_deny is defined
+
+os_firewall_deny:
+- service: api server http
+  port: 8080/tcp
+- service: former web console port
+  port: 8444/tcp
+- service: former etcd peer port
+  port: 7001/tcp
+
+TASK: [os_firewall | Remove iptables rules] *********************************** 
+ok: [demov3-master-9986c] => (item={'port': '8080/tcp', 'service': 'api server http'}) => {"changed": false, "item": {"port": "8080/tcp", "service": "api server http"}, "output": []}
+ok: [demov3-master-9986c] => (item={'port': '8444/tcp', 'service': 'former web console port'}) => {"changed": false, "item": {"port": "8444/tcp", "service": "former web console port"}, "output": []}
+ok: [demov3-master-9986c] => (item={'port': '7001/tcp', 'service': 'former etcd peer port'}) => {"changed": false, "item": {"port": "7001/tcp", "service": "former etcd peer port"}, "output": []}
+
+
+
 
 
 
