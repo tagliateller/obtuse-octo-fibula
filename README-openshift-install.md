@@ -1,4 +1,41 @@
 # Installation OpenShift - Manuell
 
-* Prüfen, ob libselinux-phyton installiert ist
+* TASK: [openshift_repos | Ensure libselinux-python is installed] *************** 
+ sudo yum list | grep libselinux-phython
+
+* TASK: [openshift_repos | Create any additional repos that are defined] ******** 
+* TASK: [openshift_repos | Remove the additional repos if no longer defined] **** 
+
+ /etc/yum.repos.d/openshift_additional.repo
+ /etc/yum.repos.d/enterprise-v3.repo
+ /etc/yum.repos.d/rhel-7-libra-candidate.repo
+ /etc/yum.repos.d/epel7-openshift.repo
+ /etc/yum.repos.d/oso-rhui-rhel-7-server.repo
+ ...
+ 
+* TASK: [openshift_repos | Configure gpg keys if needed] ************************ 
+
+* TASK: [openshift_repos | Configure yum repositories] ************************** 
+
+Quelle = /home/ec2-user/openshift-ansible/playbooks/common/openshift-cluster/roles/openshift_repos/files/origin/repos/maxamillion-origin-next-epel-7.repo
+
+Ziel   = /etc/yum.repos.d/maxamillion-origin-next-epel-7.repo
+
+sudo vi /etc/yum.repos.d/maxamillion-origin-next-epel-7.repo
+```
+[maxamillion-origin-next]
+name=Copr repo for origin-next owned by maxamillion
+baseurl=https://copr-be.cloud.fedoraproject.org/results/maxamillion/origin-next/epel-7-$basearch/
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/maxamillion/origin-next/pubkey.gpg
+enabled=1
+```
+
+* TASK: [os_update_latest | Update all packages] ******************************** 
+ 
+sudo yum -y update
+
+
+
 
