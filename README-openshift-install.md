@@ -36,6 +36,21 @@ enabled=1
  
 sudo yum -y update
 
+* TASK: [openshift_master_ca | Install the base package for admin tooling] ****** 
+
+sudo yum -y origin
+
+* TASK: [openshift_master_ca | Create openshift_master_config_dir if it doesn't exist] ***
+
+sudo mkdir -p /etc/origin/master
+sudo chmod 755 /etc/origin/master
+
+* TASK: [openshift_master_ca | Create the master certificates if they do not already exist] ***
+ 
+
+
+ 
+
 
 
 
