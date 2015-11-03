@@ -46,7 +46,16 @@ sudo mkdir -p /etc/origin/master
 sudo chmod 755 /etc/origin/master
 
 * TASK: [openshift_master_ca | Create the master certificates if they do not already exist] ***
- 
+
+40.114.4.137 ist die public ip
+10.0.0.11 ist die private ip
+
+[azureuser@demov3-master ~]$ sudo oadm ca create-master-certs --hostnames=40.114.4.137,10.0.0.11 --master=https://10.0.0.11:8443 --public-master=https://40.114
+.4.137:8443 --cert-dir=/etc/origin/master --overwrite=false
+Generated new key pair as /etc/origin/master/serviceaccounts.public.key and /etc/origin/master/serviceaccounts.private.key
+[azureuser@demov3-master ~]$
+
+
 
 
  
