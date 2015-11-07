@@ -6,21 +6,26 @@ single-linux-machine]$ azure group deployment create -f azuredeploy.json -e azur
 
 ssh -i ~/azure-key-pair azureuser@demov3.eastus.cloudapp.azure.com
 
+```
 sudo yum -y update
 sudo yum -y install docker
 sudo yum -y install git
 sudo systemctl start docker
+```
 
+Download
+
+```
 [azureuser@demov3 ~]$ curl -L -O https://github.com/openshift/origin/releases/download/v1.0.7/openshift-origin-v1.0.7-67bb208-linux-amd64.tar.gz
+```
 
+Entpacken
+
+```
 [azureuser@demov3 ~]$ mkdir origin-1.0.7
 [azureuser@demov3 ~]$ cd origin-1.0.7/
-[azureuser@demov3 origin-1.0.7]$ tar zxvf ../openshift-origin-v1.0.7-67bb208-
-tar (child): ../openshift-origin-v1.0.7-67bb208-: Kann open nicht ausführen: Datei oder Verzeichnis nicht gefunden
-tar (child): Error is not recoverable: exiting now
-tar: Child returned status 2
-tar: Error is not recoverable: exiting now
-[azureuser@demov3 origin-1.0.7]$ tar zxvf ../openshift-origin-v1.0.7-67bb208-linux-amd64.tar.gz 
+$ tar zxvf ../openshift-origin-v1.0.7-67bb208-linux-amd64.tar.gz
+
 ./
 ./kube-proxy
 ./oadm
@@ -31,11 +36,27 @@ tar: Error is not recoverable: exiting now
 ./openshift
 ./kube-apiserver
 ./kubelet
-[azureuser@demov3 origin-1.0.7]$ export PATH=$(pwd):$PATH
-[
+```
 
+Export in Path und Start OpenShift Origin
+
+```
 [azureuser@demov3 origin-1.0.7]$ export PATH=$(pwd):$PATH
 [azureuser@demov3 origin-1.0.7]$ sudo ./openshift start
+```
+
+Einrichtung Registry
+
+```
+sudo ./oadm registry --config=openshift.local.config/master/admin.kubeconfig --credentials=openshift.local.config/master/openshift-registry.kubeconfig 
+```
+
+Laden der Examples
+
+```
+sudo yum -y install unzip
+unzip examples.zip (git openshift-ansible)
+```
 
 geht nicht, da oauth auf 10.0.0.11 umgeleitet wird. auch die nachträgliche korrektur der url hilft nicht.
 https://demov3.eastus.cloudapp.azure.com:8443/console/
@@ -76,7 +97,7 @@ ok, 2. Versuch: Deployment ok (wie Tutorial), weiter ...
 </body>
 </html>[azureuser@demov3 origin]$ 
 
-sudo ./oadm registry --config=openshift.local.config/master/admin.kubeconfig --credentials=openshift.local.config/master/openshift-registry.kubeconfig 
+
  
 --> es fehlen die Templates ... oder ?
 
