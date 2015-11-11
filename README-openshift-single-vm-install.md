@@ -101,6 +101,7 @@ ok, 2. Versuch: Deployment ok (wie Tutorial), weiter ...
  
 --> es fehlen die Templates ... oder ?
 
+```
 ## Doku verlorengegangen, also später nochmal lt. history
 
     1  sudo yum -y update
@@ -129,8 +130,9 @@ ok, 2. Versuch: Deployment ok (wie Tutorial), weiter ...
    24  sudo export PATH=$(pwd):$PATH
    25  sudo ./openshift start &> openshift.log &
    26  history
+```
 
-
+```
 https://github.com/openshift/origin/tree/master/examples/sample-app
 
     1  cd origin-1.0.7/
@@ -158,7 +160,9 @@ https://github.com/openshift/origin/tree/master/examples/sample-app
    23  history > log
    
    # /etc/sysconfig/docker
+```
 
+```
 # Modify these options if you want to change the way the docker daemon runs
 OPTIONS='--selinux-enabled'
 
@@ -193,10 +197,11 @@ INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16'
 # Controls the /etc/cron.daily/docker-logrotate cron job status.
 # To disable, uncomment the line below.
 # LOGROTATE=false
-
+```
 
 GIT + Secret anpassen:
 
+```
 {
   "kind": "Template",
   "apiVersion": "v1",
@@ -644,12 +649,50 @@ GIT + Secret anpassen:
     "template": "application-template-stibuild"
   }
 }
+```
 
+# Startup
 
-Weiter:
+```
+sudo systemctl start docker
+cd origin-1.0.7/
+sudo ./openshift start &> openshift.log &
+curl http://172.30.140.127:5432 --> liefert Seite zurück
+```
 
-* shutdown, startup, curl ...
-* Route
-* wordpress + co
+# Route
+Firewall auf 80, 8443 und 5432 aufmachen - ...
+
+8443/console - geht nicht, da oauth auf interne IP verzweigt. auch manuelles austauschen der url wirkt nicht und führt zu error auf der console
+
+80 - kein erfolg
+5432 - kein erfolg
+
+# Router erzeugen
+
+```
+export KUBECONFIG=<homedir>/openshift.local.config/master/admin.kubeconfig # erspart die Angabe --config
+oc login -u system:admin -n default
+echo '{"kind":"ServiceAccount","apiVersion":"v1","metadata":{"name":"router"}}' | oc create -f -
+oc edit scc privileged
+
+...
+users:
+- system:serviceaccount:openshift-infra:build-controller
+- system:serviceaccount:default:router
+
+oadm router --credentials=openshift.local.config/master/openshift-router.kubeconfig --service-account=router
+
+```
+
+# Service bereitstellen (in der EC2-Instanz muss Port 80 freigeschaltet sein)
+
+```
+oc expose service frontend --hostname=EC2INSTANCE
+```
+
+Damit ist die Applikation worldwide erreichbar (Port 80).
+
+# wordpress + co
 
 
