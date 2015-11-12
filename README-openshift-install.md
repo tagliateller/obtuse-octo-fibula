@@ -128,7 +128,7 @@ changed: [demov3-master-9986c] => (item={'port': '5404/udp', 'service': 'Corosyn
 
 changed: [demov3-master-9986c] => (item={'port': '5405/udp', 'service': 'Corosync UDP'}) => {"changed": true, "item": {"port": "5405/udp", "service": "Corosync UDP"}, "output": ["", "iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]\r\n"]}
 
-
+```
 [azureuser@demov3-master ~]$ sudo iptables -N OS_FIREWALL_ALLOW
 [azureuser@demov3-master ~]$ sudo iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 4001 -j ACCEPT
 [azureuser@demov3-master ~]$ sudo iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 8443 -j ACCEPT
@@ -139,7 +139,7 @@ changed: [demov3-master-9986c] => (item={'port': '5405/udp', 'service': 'Corosyn
 [azureuser@demov3-master ~]$ sudo iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 2224 -j ACCEPT
 [azureuser@demov3-master ~]$ sudo iptables -A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 5404 -j ACCEPT
 [azureuser@demov3-master ~]$ sudo iptables -A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 5405 -j ACCEPT
-
+```
 
 
 - name: Remove iptables rules
@@ -163,7 +163,7 @@ TASK: [os_firewall | Remove iptables rules] ***********************************
 ok: [demov3-master-9986c] => (item={'port': '8080/tcp', 'service': 'api server http'}) => {"changed": false, "item": {"port": "8080/tcp", "service": "api server http"}, "output": []}
 ok: [demov3-master-9986c] => (item={'port': '8444/tcp', 'service': 'former web console port'}) => {"changed": false, "item": {"port": "8444/tcp", "service": "former web console port"}, "output": []}
 ok: [demov3-master-9986c] => (item={'port': '7001/tcp', 'service': 'former etcd peer port'}) => {"changed": false, "item": {"port": "7001/tcp", "service": "former etcd peer port"}, "output": []}
-
+```
 [azureuser@demov3-master ~]$ sudo iptables -D OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 8080 -j ACCEPT
 iptables: Bad rule (does a matching rule exist in that chain?).
 [azureuser@demov3-master ~]$ sudo iptables -D OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 8444 -j ACCEPT
@@ -171,11 +171,11 @@ iptables: Bad rule (does a matching rule exist in that chain?).
 [azureuser@demov3-master ~]$ sudo iptables -D OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 7001 -j ACCEPT
 iptables: Bad rule (does a matching rule exist in that chain?).
 [azureuser@demov3-master ~]$
-
+```
 TASK: [openshift_master | Create the scheduler config] ************************ 
 
 ./roles/openshift_master/templates/scheduler.json.j2
-
+```
 {
   "kind": "Policy",
   "apiVersion": "v1",
@@ -191,6 +191,7 @@ TASK: [openshift_master | Create the scheduler config] ************************
     {"name": "Zone", "weight" : 2, "argument": {"serviceAntiAffinity" : {"label": "zone"}}}
   ]
 }
+```
 sudo vi /etc/origin/master/scheduler.json
 sudo chmod 664 /etc/origin/master/scheduler.json
 
@@ -209,7 +210,7 @@ sudo htpasswd -c /etc/origin/origin-passwd john # pw: smith
 TASK: [openshift_master | Create master config] ******************************* 
 
 TODO: Variablen ermitteln, KonfigDatei so darstellen, dass es auch bei anderen Deployments passt
-
+```
 apiLevels:
 {% if openshift.common.deployment_type == "enterprise" %}
 - v1beta3
@@ -342,6 +343,7 @@ servingInfo:
   keyFile: master.server.key
   maxRequestsInFlight: 500
   requestTimeoutSeconds: 3600
+```
 
 
 
