@@ -209,7 +209,9 @@ sudo htpasswd -c /etc/origin/origin-passwd john # pw: smith
 
 TASK: [openshift_master | Create master config] ******************************* 
 
-TODO: Variablen ermitteln, KonfigDatei so darstellen, dass es auch bei anderen Deployments passt
+TODO: Variablen ermitteln, KonfigDatei so darstellen, dass es auch bei anderen Deployments passt - ODER schneller: 
+Beispiel von Single-Installation holen ??
+
 ```
 apiLevels:
 {% if openshift.common.deployment_type == "enterprise" %}
