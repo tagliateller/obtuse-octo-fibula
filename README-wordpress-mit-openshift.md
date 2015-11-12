@@ -300,3 +300,8 @@ oc new-app wordpress -e WORDPRESS_DB_PASSWORD=wordpress -e WORDPRESS_DB_USER=wor
 ```
 ERROR: Wordpress startet nicht, wie kommt man an die Logs heran ??
 
+# Versuch lt. Roadshow - JBoss-Image nicht in origin zu beziehen, mit Wildfly geht es nicht
+
+```
+oc new-app openshift/wildfly-8-centos~https://github.com/tagliateller/openshift3mlbparks.git
+```
