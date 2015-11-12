@@ -291,3 +291,12 @@
 
 ## Deployment des Templates in der OpenShift-Instanz
 
+```
+oc new-app openshift/mysql-55-centos7 -e MYSQL_DATABASE=wordpress -e MYSQL_ROOT_PASSWORD=wordpress -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress
+```
+
+```
+oc new-app wordpress -e WORDPRESS_DB_PASSWORD=wordpress -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_NAME=wordpress -e WORDPRESS_DB_HOST=172.30.75.19:3306
+```
+ERROR: Wordpress startet nicht, wie kommt man an die Logs heran ??
+
