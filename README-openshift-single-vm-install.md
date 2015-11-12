@@ -690,6 +690,11 @@ oadm router --credentials=openshift.local.config/master/openshift-router.kubecon
 ```
 oc expose service frontend --hostname=EC2INSTANCE
 ```
+# Löschen der Route und neuanlegen
+
+```
+oc delete route frontend
+```
 
 Damit ist die Applikation worldwide erreichbar (Port 80).
 
