@@ -162,3 +162,33 @@ if [ "$azurevmimage" = "" ]; then
     exit 1
 
 fi
+
+# Liste der Publisher
+
+info:    Executing command vm image list-publishers
+Location: eastus
++ Getting virtual machine image publishers (Location: "eastus")                
+data:    Publisher                                             Location
+data:    ----------------------------------------------------  --------
+data:    4psa                                                  eastus  
+data:    4ward365                                              eastus  
+data:    7isolutions                                           eastus  
+data:    a10networks                                           eastus  
+
+# Liste der Images
+
+[ec2-user@ip-172-31-11-251 openshift-ansible]$ azure vm image list
+info:    Executing command vm image list
+Location: eastus
+Publisher: Oracle
+info:    The parameters --offer and --sku if specified will be ignored
++ Getting virtual machine image offers (Publisher: "Oracle" Location:"eastus") 
+data:    Publisher  Offer                                                     Sku                     OS     Version  Location  Urn                                                                       
+data:    ---------  --------------------------------------------------------  ----------------------  -----  -------  --------  --------------------------------------------------------------------------
+data:    Oracle     c290a6b031d841e09f2da759bbabe71f__Oracle-Linux-6-12-2014  OL64                    Linux  6.4.0    eastus    Oracle:c290a6b031d841e09f2da759bbabe71f__Oracle-Linux-6-12-2014:OL64:6.4.0
+data:    Oracle     Oracle-Linux-7                                            OL70                    Linux  7.0.0    eastus    Oracle:Oracle-Linux-7:OL70:7.0.0                                          
+data:    Oracle     Oracle-WebLogic-Server                                    Oracle-WebLogic-Server  Linux  12.1.2   eastus    Oracle:Oracle-WebLogic-Server:Oracle-WebLogic-Server:12.1.2               
+info:    vm image list command OK
+[ec2-user@ip-172-31-11-251 openshift-ansible]$ 
+
+
