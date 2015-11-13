@@ -119,6 +119,46 @@ e4670c162592        mysql               "/entrypoint.sh mysq   2 minutes ago    
 Damit kann Wordpress aufgerufen und weiter (über die Oberfläche) installiert werden.
 
 
+#Tipps
 
+docker exec -t -i 589f2ad30138 /bin/bash# Select Azure subscription
 
+ 
+ subscription setzen
+ 
 
+azure account set "$azuresubname"
+
+ 
+
+# Confirm that subscription is now default
+
+ 
+
+azuresubdefault=$(azure account show --json "$azuresubname" | jsawk 'return this.isDefault')
+
+if [ "$azuresubdefault" != "true" ]; then
+
+    echo "Error: Azure subscription ${azuresubdefault} not found as default subscription"
+
+    exit 1
+
+fi# Select Linux VM image 
+
+ 
+
+azurevmimage=$(azure vm image list --json | jsawk -n 'out(this.name)' -q "[?name=\"*Ubuntu-14_04_1-LTS-amd64-server*\"]" | sort | tail -n 1)
+
+ 
+
+# Confirm that valid Linux VM Image is selected
+
+ 
+
+if [ "$azurevmimage" = "" ]; then
+
+    echo "Error: Azure VM image not found"
+
+    exit 1
+
+fi
