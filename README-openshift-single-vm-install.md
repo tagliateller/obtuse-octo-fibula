@@ -656,6 +656,7 @@ GIT + Secret anpassen:
 ```
 sudo systemctl start docker
 cd origin-1.0.7/
+export PATH=$(pwd):$PATH
 sudo ./openshift start &> openshift.log &
 curl http://172.30.140.127:5432 --> liefert Seite zurück
 ```
