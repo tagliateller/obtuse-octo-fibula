@@ -52,9 +52,11 @@ $ tar zxvf ../openshift-origin-v1.0.7-67bb208-linux-amd64.tar.gz
 Export in Path und Start OpenShift Origin
 
 ```
-[azureuser@demov3 origin-1.0.7]$ export PATH=$(pwd):$PATH
-[azureuser@demov3 origin-1.0.7]$ sudo ./openshift start
+export PATH=$(pwd):$PATH
+sudo ./openshift start &> openshift.log &
 ```
+
+export KUBECONFIG=<homedir>/openshift.local.config/master/admin.kubeconfig
 
 Einrichtung Registry
 
@@ -711,5 +713,12 @@ oc delete route frontend
 Damit ist die Applikation worldwide erreichbar (Port 80).
 
 # wordpress + co
+
+https://github.com/kubernetes/kubernetes/tree/master/examples/mysql-wordpress-pd
+
+## hier geht es weiter - Bsp. durchspielen
+sudo ./kubectl create -f mysql.yaml --config=openshift.local.config/master/admin.kubeconfig
+
+
 
 
