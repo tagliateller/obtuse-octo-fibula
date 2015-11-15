@@ -1,10 +1,21 @@
 # Installation einer Single VM mit OpenShift (Executable)
 
-$ azure group create -n demov3group -l "East US"
+```
+azure group create -n demov3group -l "East US"
+azure group deployment create -f azuredeploy.json -e azuredeploy.parameters.json -g demov3group -n demov3deployment
+```
 
-single-linux-machine]$ azure group deployment create -f azuredeploy.json -e azuredeploy.parameters.json -g demov3group -n demov3deployment
+Prüfen der Log-Dateien im Falle eines Fehlschlags
+```
+azure group log show -l -v demov3group > log
+```
 
+Anmeldung
+
+```
 ssh -i ~/azure-key-pair azureuser@demov3.eastus.cloudapp.azure.com
+```
+Vorbereitung Installation
 
 ```
 sudo yum -y update
