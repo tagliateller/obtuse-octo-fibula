@@ -10,6 +10,11 @@ Prüfen der Log-Dateien im Falle eines Fehlschlags
 azure group log show -l -v demov3group > log
 ```
 
+Löschen der Gruppe nach beendetem Test
+```
+azure group delete -n demov3group -q
+```
+
 Zu Beachten - das Hinzufügen der Extensions geht so auch nicht:
 
 https://azure.microsoft.com/en-us/blog/automate-linux-vm-customization-tasks-using-customscript-extension/
