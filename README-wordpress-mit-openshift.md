@@ -355,6 +355,36 @@ source ~/.aws_creds
     "CreateTime": "2015-11-17T18:32:24.641Z", 
     "Size": 10
 }
-[ec2-user@ip-172-31-11-251 ~]$ 
+[ec2-user@ip-172-31-11-251 ~]$
+
+[centos@ip-172-31-5-243 origin-1.0.7]$ vi mysql.yaml
+```
+
+```yaml
+```
+
+```console
+[centos@ip-172-31-5-243 origin-1.0.7]$ kubectl create -f mysql.yaml
+pod "mysql" created
+[centos@ip-172-31-5-243 origin-1.0.7]$ kubectl get pods
+NAME                      READY     STATUS              RESTARTS   AGE
+docker-registry-1-kfvj1   1/1       Running             0          4m
+mysql                     0/1       ContainerCreating   0          17s
+router-1-5vzsb            1/1       Running             0          4m
+[centos@ip-172-31-5-243 origin-1.0.7]$ 
+
+nach 5 minuten
+
+[centos@ip-172-31-5-243 origin-1.0.7]$ kubectl get pods
+NAME                      READY     STATUS              RESTARTS   AGE
+docker-registry-1-kfvj1   1/1       Running             0          10m
+mysql                     0/1       ContainerCreating   0          5m
+router-1-5vzsb            1/1       Running             0          9m
+[centos@ip-172-31-5-243 origin-1.0.7]$ 
 
 ```
+
+auch das wird so nix ... muss das volume gemountet sein ? geht aus https://github.com/kubernetes/kubernetes/blob/master/docs/user-guide/volumes.md#aws-ebs-example-configuration nicht wirklich hervor.
+
+Nächster möglicher Versuch - Mysql ohne persistent storage, aber wie ?
+
