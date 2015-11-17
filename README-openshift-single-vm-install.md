@@ -58,20 +58,46 @@ $ tar zxvf ../openshift-origin-v1.0.7-67bb208-linux-amd64.tar.gz
 ./kubelet
 ```
 
-Export in Path und Start OpenShift Origin
+Start OpenShift Origin
 
 ```
-export PATH=$(pwd):$PATH
 sudo ./openshift start &> openshift.log &
 ```
 
-export KUBECONFIG=<homedir>/openshift.local.config/master/admin.kubeconfig
-
-Einrichtung Registry
+Umgebung vorbereiten
 
 ```
-sudo ./oadm registry --config=openshift.local.config/master/admin.kubeconfig --credentials=openshift.local.config/master/openshift-registry.kubeconfig 
+[azureuser@demov3 origin-1.0.7]$ export PATH=$(pwd):$PATH
+[azureuser@demov3 origin-1.0.7]$ export CURL_CA_BUNDLE=`pwd`/openshift.local.config/master/ca.crt
+[azureuser@demov3 origin-1.0.7]$ sudo chmod a+rwX openshift.local.config/master/admin.kubeconfig
+[azureuser@demov3 origin-1.0.7]$ sudo chmod +r openshift.local.config/master/openshift-registry.kubeconfig
+[azureuser@demov3 origin-1.0.7]$ export KUBECONFIG=`pwd`/openshift.local.config/master/admin.kubeconfig
 ```
+Registry anlegen
+
+```
+[azureuser@demov3 origin-1.0.7]$ oadm registry --create --credentials=openshift.local.config/master/openshift-registry.kubeconfig
+DeploymentConfig "docker-registry" created
+Service "docker-registry" created
+[azureuser@demov3 origin-1.0.7]$
+```
+
+Router anlegen
+
+```console
+oc login -u system:admin -n default
+echo '{"kind":"ServiceAccount","apiVersion":"v1","metadata":{"name":"router"}}' | oc create -f -
+oc edit scc privileged
+
+...
+users:
+- system:serviceaccount:openshift-infra:build-controller
+- system:serviceaccount:default:router
+
+sudo chmod +r openshift.local.config/master/openshift-registry.kubeconfig
+oadm router --credentials=openshift.local.config/master/openshift-router.kubeconfig --service-account=router
+```
+TODO: bis hierher alles ok
 
 Laden der Examples
 
