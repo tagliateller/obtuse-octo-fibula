@@ -361,6 +361,38 @@ source ~/.aws_creds
 ```
 
 ```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  labels:
+    name: mysql
+spec:
+  containers:
+    - resources:
+        limits :
+          cpu: 0.5
+      image: mysql:5.6
+      name: mysql
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          # change this
+          value: wordpress
+      ports:
+        - containerPort: 3306
+          name: mysql
+      volumeMounts:
+          # name must match the volume name below
+        - name: mysql-persistent-storage
+          # mount path within the container
+          mountPath: /var/lib/mysql
+  volumes:
+    - name: mysql-persistent-storage
+      awsElasticBlockStore:
+        volumeID: aws://us-east-1a/vol-d1ae7732
+        fsType: ext4
+~                                                                                                                                                             
+~                      
 ```
 
 ```console
@@ -387,4 +419,7 @@ router-1-5vzsb            1/1       Running             0          9m
 auch das wird so nix ... muss das volume gemountet sein ? geht aus https://github.com/kubernetes/kubernetes/blob/master/docs/user-guide/volumes.md#aws-ebs-example-configuration nicht wirklich hervor.
 
 Nächster möglicher Versuch - Mysql ohne persistent storage, aber wie ?
+
+Vorlage: https://github.com/kubernetes/kubernetes/tree/master/examples/mysql-wordpress-pd
+
 
