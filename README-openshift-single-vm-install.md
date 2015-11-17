@@ -94,7 +94,7 @@ users:
 - system:serviceaccount:openshift-infra:build-controller
 - system:serviceaccount:default:router
 
-sudo chmod +r openshift.local.config/master/openshift-registry.kubeconfig
+sudo chmod +r openshift.local.config/master/openshift-router.kubeconfig
 oadm router --credentials=openshift.local.config/master/openshift-router.kubeconfig --service-account=router
 ```
 TODO: bis hierher alles ok
