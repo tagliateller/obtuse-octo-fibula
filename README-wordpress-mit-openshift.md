@@ -2,7 +2,7 @@
 
 ## Erstellung eines entsprechenden Templates
 
-```
+```json
 {
   "kind": "Template",
   "apiVersion": "v1",
@@ -304,4 +304,57 @@ ERROR: Wordpress startet nicht, wie kommt man an die Logs heran ??
 
 ```
 oc new-app openshift/wildfly-8-centos~https://github.com/tagliateller/openshift3mlbparks.git
+```
+
+# Versuch mit "reinem" Kubernetes
+
+```console
+[azureuser@demov3 origin-1.0.7]$ kubectl run wpmysql --image=mysql --env="MYSQL_ROOT_PASSWORD=wordpress" --port=3306
+deploymentconfig "wpmysql" created
+[azureuser@demov3 origin-1.0.7]$ kubectl get pods
+NAME                      READY     STATUS    RESTARTS   AGE
+docker-registry-1-y17gc   1/1       Running   0          3h
+router-1-ay7rf            1/1       Running   0          3h
+wpmysql-1-deploy          1/1       Running   0          11s
+wpmysql-1-jjn5g           0/1       Pending   0          6s
+[azureuser@demov3 origin-1.0.7]$ 
+
+[azureuser@demov3 origin-1.0.7]$ kubectl get pods
+NAME                      READY     STATUS             RESTARTS   AGE
+docker-registry-1-y17gc   1/1       Running            0          3h
+router-1-ay7rf            1/1       Running            0          3h
+wpmysql-1-jjn5g           0/1       CrashLoopBackOff   6          6m
+[azureuser@demov3 origin-1.0.7]$ 
+```
+
+# Das gleiche noch einmal mit AWS
+
+```console
+source ~/.aws_creds
+[ec2-user@ip-172-31-11-251 ~]$ aws ec2 create-volume --availability-zone=us-east-1a --size 10 --volume-type gp2 --region=us-east-1
+{
+    "AvailabilityZone": "us-east-1a", 
+    "Encrypted": false, 
+    "VolumeType": "gp2", 
+    "VolumeId": "vol-d1ae7732", 
+    "State": "creating", 
+    "Iops": 30, 
+    "SnapshotId": "", 
+    "CreateTime": "2015-11-17T18:32:16.823Z", 
+    "Size": 10
+}
+[ec2-user@ip-172-31-11-251 ~]$ aws ec2 create-volume --availability-zone=us-east-1a --size 10 --volume-type gp2 --region=us-east-1
+{
+    "AvailabilityZone": "us-east-1a", 
+    "Encrypted": false, 
+    "VolumeType": "gp2", 
+    "VolumeId": "vol-89ae776a", 
+    "State": "creating", 
+    "Iops": 30, 
+    "SnapshotId": "", 
+    "CreateTime": "2015-11-17T18:32:24.641Z", 
+    "Size": 10
+}
+[ec2-user@ip-172-31-11-251 ~]$ 
+
 ```
