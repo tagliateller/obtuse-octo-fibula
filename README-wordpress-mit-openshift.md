@@ -422,4 +422,54 @@ Nächster möglicher Versuch - Mysql ohne persistent storage, aber wie ?
 
 Vorlage: https://github.com/kubernetes/kubernetes/tree/master/examples/mysql-wordpress-pd
 
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-pod
+  labels:
+    name: mysql-pod
+    context: docker-k8s-lab
+spec:
+  containers:
+    -
+      name: mysql
+      image: mysql:latest
+      env:
+        -
+          name: "MYSQL_USER"
+          value: "mysql"
+        -
+          name: "MYSQL_PASSWORD"
+          value: "mysql"
+        -
+          name: "MYSQL_DATABASE"
+          value: "sample"
+        -
+          name: "MYSQL_ROOT_PASSWORD"
+          value: "supersecret"
+      ports:
+        -
+          containerPort: 3306
+```
+
+```console
+[centos@ip-172-31-19-180 origin-1.0.7]$ kubectl get pods
+NAME                      READY     STATUS    RESTARTS   AGE
+docker-registry-1-kpdbl   1/1       Running   0          5m
+mysql-pod                 1/1       Running   1          1m
+router-1-4jkqe            1/1       Running   0          4m
+[centos@ip-172-31-19-180 origin-1.0.7]$
+```
+
+```console
+[centos@ip-172-31-19-180 origin-1.0.7]$ kubectl logs mysql-pod
+Error from server: Internal error occurred: Pod "mysql-pod" in namespace "default" : pod is not in 'Running', 'Succeeded' or 'Failed' state - State: "Pending"
+[centos@ip-172-31-19-180 origin-1.0.7]$ kubectl get pods
+NAME                      READY     STATUS             RESTARTS   AGE
+docker-registry-1-kpdbl   1/1       Running            0          8m
+mysql-pod                 0/1       CrashLoopBackOff   5          3m
+router-1-4jkqe            1/1       Running            0          7m
+[centos@ip-172-31-19-180 origin-1.0.7]$
+```
 
