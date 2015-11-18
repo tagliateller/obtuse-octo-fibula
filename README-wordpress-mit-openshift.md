@@ -329,6 +329,8 @@ wpmysql-1-jjn5g           0/1       CrashLoopBackOff   6          6m
 
 # Das gleiche noch einmal mit AWS
 
+Vorlage: https://github.com/kubernetes/kubernetes/tree/master/examples/mysql-wordpress-pd
+
 ```console
 source ~/.aws_creds
 [ec2-user@ip-172-31-11-251 ~]$ aws ec2 create-volume --availability-zone=us-east-1a --size 10 --volume-type gp2 --region=us-east-1
@@ -420,7 +422,7 @@ auch das wird so nix ... muss das volume gemountet sein ? geht aus https://githu
 
 Nächster möglicher Versuch - Mysql ohne persistent storage, aber wie ?
 
-Vorlage: https://github.com/kubernetes/kubernetes/tree/master/examples/mysql-wordpress-pd
+http://blog.arungupta.me/
 
 ```yaml
 apiVersion: v1
@@ -473,3 +475,6 @@ router-1-4jkqe            1/1       Running            0          7m
 [centos@ip-172-31-19-180 origin-1.0.7]$
 ```
 
+Vielleicht mit Wildfly + MySQL
+
+http://blog.arungupta.me/mysql-kubernetes-service-access-wildfly-pod-techtip72/
