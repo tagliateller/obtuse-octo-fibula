@@ -15,3 +15,6 @@ sudo apt-get install owncloud
 
 Löschen der config/config.php ermöglicht die Installation zum 2. Mal
 
+7za e Cubian-nano+headless-x1-a20-cubietruck.img.7z
+sudo dd if=./Cubian-nano+headless-x1-a20-cubietruck.img of=/dev/mmcblk0 bs=4096; sync
+
