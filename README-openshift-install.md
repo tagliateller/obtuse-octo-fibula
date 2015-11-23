@@ -1,3 +1,45 @@
+# Installation Ansible / OpenShift-Ansible
+
+Ansible (http://www.ansible.com/) ist ein Werkzeug zur Automatisierung von Administrationsprozessen und vergleichbar mit Puppet, Chef usw. Ansible benötigt einen lokalen Client auf dem zu administrierenden System. Ansible ist das Werzeug der Wahl für die Installation von OpenShift.
+
+Zur Einrichtung von Ansible wird ein Linux-System benötigt. Zunächst ist das System zu aktualisieren.
+
+<source lang="bash">
+sudo yum -y update
+</source>
+
+Als nächstes kann Ansible mit dem Python-PIP-Installer installiert werden.
+
+<source lang="bash">
+sudo pip install ansible 
+</source>
+
+Das wäre es schon. Folgender Aufruf zeigt die Funktionsfähigkeit an:
+
+<source lang="bash">
+ansible --version 
+</source>
+
+Ist Pip nicht installiert, dann kann es wie folgt nachgeholt werden:
+
+<source lang="bash">
+sudo rpm -iUvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+sudo yum -y install python-pip
+</source>
+
+Möglicherweise bricht die Installation von Ansible mit dem Fehler "no acceptable C compiler found in $PATH" ab. Dann hilft:
+
+<source lang="bash">
+sudo yum groupinstall "Development tools"
+</source>
+
+Ein anderer Fehler ist "fatal error: Python.h: No such file or directory".
+
+<source lang="bash">
+sudo yum install python-devel
+</source>
+
+
 # Installation OpenShift - Manuell
 
 * TASK: [openshift_repos | Ensure libselinux-python is installed] *************** 
