@@ -754,6 +754,9 @@ https://github.com/kubernetes/kubernetes/tree/master/examples/mysql-wordpress-pd
 ## hier geht es weiter - Bsp. durchspielen
 sudo ./kubectl create -f mysql.yaml --config=openshift.local.config/master/admin.kubeconfig
 
+# mit script ??
+https://github.com/tagliateller/azure-quickstart-templates/blob/master/201-dependency-between-scripts-using-extensions/azuredeploy.json
+
 
 
 
