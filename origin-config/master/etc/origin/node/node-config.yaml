@@ -1,0 +1,27 @@
+allowDisabledDocker: false
+apiVersion: v1
+dnsDomain: cluster.local
+dnsIP: 172.30.0.1
+dockerConfig:
+  execHandlerName: ""
+iptablesSyncPeriod: "5s"
+imageConfig:
+  format: openshift/origin-${component}:${version}
+  latest: false
+kind: NodeConfig
+masterKubeConfig: system:node:172.31.28.12.kubeconfig
+networkPluginName: redhat/openshift-ovs-subnet
+# networkConfig struct introduced in origin 1.0.6 and OSE 3.0.2 which
+# deprecates networkPluginName above. The two should match.
+networkConfig:
+   mtu: 8951
+   networkPluginName: redhat/openshift-ovs-subnet
+nodeIP: 172.31.28.12
+nodeName: 172.31.28.12
+podManifestConfig:
+servingInfo:
+  bindAddress: 0.0.0.0:10250
+  certFile: server.crt
+  clientCA: ca.crt
+  keyFile: server.key
+volumeDirectory: /var/lib/origin/openshift.local.volumes

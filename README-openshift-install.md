@@ -358,5 +358,160 @@ servingInfo:
  
 
 
+# demov3-master
+
+## iptables
+
+[centos@ip-172-31-28-12 ~]$ sudo iptables --list-rules
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-N DOCKER
+-N OS_FIREWALL_ALLOW
+-A INPUT -i tun0 -m comment --comment "traffic from docker for internet" -j ACCEPT
+-A INPUT -p udp -m multiport --dports 4789 -m comment --comment "001 vxlan incoming" -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
+-A INPUT -j OS_FIREWALL_ALLOW
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -o lbr0 -j DOCKER
+-A FORWARD -o lbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i lbr0 ! -o lbr0 -j ACCEPT
+-A FORWARD -i lbr0 -o lbr0 -j ACCEPT
+-A FORWARD -s 10.1.0.0/16 -j ACCEPT
+-A FORWARD -d 10.1.0.0/16 -j ACCEPT
+-A FORWARD -o docker0 -j DOCKER
+-A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i docker0 ! -o docker0 -j ACCEPT
+-A FORWARD -i docker0 -o docker0 -j ACCEPT
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 4001 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 8443 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 53 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 24224 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 24224 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 2224 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 5404 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 5405 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 10250 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 10255 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 10255 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 4789 -j ACCEPT
+[centos@ip-172-31-28-12 ~]$ 
+
+
+## node-compute-77f18
+
+[centos@ip-172-31-31-118 ~]$ sudo iptables --list-rules
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-N DOCKER
+-N OS_FIREWALL_ALLOW
+-A INPUT -i tun0 -m comment --comment "traffic from docker for internet" -j ACCEPT
+-A INPUT -p udp -m multiport --dports 4789 -m comment --comment "001 vxlan incoming" -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
+-A INPUT -j OS_FIREWALL_ALLOW
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -s 10.1.0.0/16 -j ACCEPT
+-A FORWARD -d 10.1.0.0/16 -j ACCEPT
+-A FORWARD -o lbr0 -j DOCKER
+-A FORWARD -o lbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i lbr0 ! -o lbr0 -j ACCEPT
+-A FORWARD -i lbr0 -o lbr0 -j ACCEPT
+-A FORWARD -o docker0 -j DOCKER
+-A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i docker0 ! -o docker0 -j ACCEPT
+-A FORWARD -i docker0 -o docker0 -j ACCEPT
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 10250 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 10255 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 10255 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 4789 -j ACCEPT
+[centos@ip-172-31-31-118 ~]$ 
+
+
+## demov3-node-infra-fb30f
+
+[centos@ip-172-31-25-64 ~]$ sudo iptables --list-rules
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-N DOCKER
+-N OS_FIREWALL_ALLOW
+-A INPUT -i tun0 -m comment --comment "traffic from docker for internet" -j ACCEPT
+-A INPUT -p udp -m multiport --dports 4789 -m comment --comment "001 vxlan incoming" -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
+-A INPUT -j OS_FIREWALL_ALLOW
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -o lbr0 -j DOCKER
+-A FORWARD -o lbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i lbr0 ! -o lbr0 -j ACCEPT
+-A FORWARD -i lbr0 -o lbr0 -j ACCEPT
+-A FORWARD -s 10.1.0.0/16 -j ACCEPT
+-A FORWARD -d 10.1.0.0/16 -j ACCEPT
+-A FORWARD -o docker0 -j DOCKER
+-A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i docker0 ! -o docker0 -j ACCEPT
+-A FORWARD -i docker0 -o docker0 -j ACCEPT
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 10250 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 10255 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 10255 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 4789 -j ACCEPT
+[centos@ip-172-31-25-64 ~]$ 
+
+
+## node-compute-1c585
+
+[centos@ip-172-31-31-119 ~]$ sudo iptables --list-rules
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-N DOCKER
+-N OS_FIREWALL_ALLOW
+-A INPUT -i tun0 -m comment --comment "traffic from docker for internet" -j ACCEPT
+-A INPUT -p udp -m multiport --dports 4789 -m comment --comment "001 vxlan incoming" -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
+-A INPUT -j OS_FIREWALL_ALLOW
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -s 10.1.0.0/16 -j ACCEPT
+-A FORWARD -d 10.1.0.0/16 -j ACCEPT
+-A FORWARD -o lbr0 -j DOCKER
+-A FORWARD -o lbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i lbr0 ! -o lbr0 -j ACCEPT
+-A FORWARD -i lbr0 -o lbr0 -j ACCEPT
+-A FORWARD -o docker0 -j DOCKER
+-A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i docker0 ! -o docker0 -j ACCEPT
+-A FORWARD -i docker0 -o docker0 -j ACCEPT
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 10250 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 10255 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 10255 -j ACCEPT
+-A OS_FIREWALL_ALLOW -p udp -m state --state NEW -m udp --dport 4789 -j ACCEPT
+[centos@ip-172-31-31-119 ~]$ 
+
+
 
 
