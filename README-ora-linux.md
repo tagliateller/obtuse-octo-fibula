@@ -55,3 +55,18 @@ http://www.hammerdb.com/index.html
 
 siehe Bilder
 
+# Silent-DBCA
+
+```console
+[azureuser@oradb ~]$ su oracle
+[oracle@oradb azureuser]$ cd ~
+[oracle@oradb ~]$ /u01/app/oracle/product/12.1.0/dbhome_1/bin/dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname ora12c -sid ora12c -respo
+nseFile NO_VALUE -characterSet AL32UTF8 -memoryPercentage 30 -emConfiguration LOCAL
+Enter SYS user password:
+
+Enter SYSTEM user password:
+
+```
+
+
+
