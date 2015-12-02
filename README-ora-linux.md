@@ -57,6 +57,8 @@ siehe Bilder
 
 # Silent-DBCA
 
+https://docs.oracle.com/cd/B28359_01/server.111/b28310/create002.htm
+
 ```console
 [azureuser@oradb ~]$ su oracle
 [oracle@oradb azureuser]$ cd ~
