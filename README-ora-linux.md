@@ -80,5 +80,40 @@ Enter SYSTEM user password:
 
 ```
 
+```console
+[azureuser@oradb ~]$ su oracle
+[oracle@oradb azureuser]$ cd ~
+[oracle@oradb ~]$ /u01/app/oracle/product/12.1.0/dbhome_1/bin/dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname ora12c -sid ora12c -respo
+nseFile NO_VALUE -characterSet AL32UTF8 -memoryPercentage 30 -emConfiguration LOCAL
+Enter SYS user password:
+
+Enter SYSTEM user password:
+
+Copying database files
+1% complete
+3% complete
+11% complete
+18% complete
+26% complete
+33% complete
+37% complete
+Creating and starting Oracle instance
+40% complete
+45% complete
+50% complete
+55% complete
+56% complete
+60% complete
+62% complete
+Completing Database Creation
+66% complete
+70% complete
+73% complete
+85% complete
+96% complete
+100% complete
+Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/ora12c/ora12c.log" for further details.
+[oracle@oradb ~]$
+```
 
 
