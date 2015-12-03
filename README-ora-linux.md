@@ -123,4 +123,28 @@ wish8.6: error while loading shared libraries: libXss.so.1: cannot open shared o
 Lösung
 sudo yum install libXScrnSaver
 
+```console
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin
+
+export PATH
+
+# User specific environment and startup programs
+# /u01/app/oracle/product/12.1.0/dbhome_1/
+umask 022
+export ORACLE_BASE=/u01/app/oracle
+export ORACLE_HOME=$ORACLE_BASE/product/12.1.0/dbhome_1
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib
+export ORACLE_LIBRARY=$ORACLE_HOME/lib/libclntsh.so
+export ORACLE_SID=ora12c
+export PATH=$ORACLE_HOME/bin:$PATH
+```                                      
 
