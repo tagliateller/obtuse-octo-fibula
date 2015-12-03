@@ -124,7 +124,7 @@ Lösung
 sudo yum install libXScrnSaver
 
 ```console
-# .bash_profile
+# .bashrc
 
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
