@@ -116,4 +116,11 @@ Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/ora12c/ora12c.log" for fu
 [oracle@oradb ~]$
 ```
 
+Fehler:
+[oracle@oradb HammerDB-2.18]$ ./hammerdb.tcl 
+wish8.6: error while loading shared libraries: libXss.so.1: cannot open shared object file: No such file or directory
+
+Lösung
+sudo yum install libXScrnSaver
+
 
