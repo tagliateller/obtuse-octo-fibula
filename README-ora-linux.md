@@ -295,4 +295,14 @@ OK (0 msec)
 
 Achtung - Tablespace muss USERS sein !!!
 
+# Orion
 
+http://www.oracle.com/webfolder/technetwork/de/community/dbadmin/tipps/orion/index.html
+
+## Erzeugung einer Test-Datei
+$ dd if=/dev/zero of=/u01/app/oracle/oradata/ora12c/mytestdbf.dbf bs=1024 count=10240
+
+die Datei muss in der orion.lun aufgeführt sein
+
+## Start Orion
+[oracle@oradb ~]$ /u01/app/oracle/product/12.1.0/dbhome_1/bin/orion -run oltp -hugenotneeded
