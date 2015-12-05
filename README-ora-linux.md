@@ -55,14 +55,15 @@ SQL> grant restricted session to <user>;
 # Wiederanfahren der Oracle-DB-VM
 
 * im Portal VM starten
-* $ ssh -i azure-key-pair azureuser@oradb-26i3q3z1.cloudapp.net
+* $ ssh -i azure-key-pair -X azureuser@oradb-26i3q3z1.cloudapp.net
 * $ su oracle
 * $ ch ~
 * $ sqlplus / as sysdba
 * SQL> startup
 * SQL> exit
+* lsnrctl start
 * 
-* 
+
 # Oracle-Linux 7 - Maschine
 
 ```console
