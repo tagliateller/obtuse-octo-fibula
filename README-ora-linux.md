@@ -9,28 +9,34 @@ mit folgenden Befehlen werden:
     die isql-Weboberfläche
     und der Oracle-Enterprise-Manager gestartet
 
+```console
 $ sqlplus / as sysdba
 SQL> startup
 SQL> exit
 $ lsnrctl start
 $ isqlplusctl start
 $ emctl start dbconsole
+```
 
 stoppen mit diesen Befehlen:
 
+```console
 $ emctl stop dbconsole
 $ isqlplusctl stop
 $ lsnrctl stop
 $ sqlplus / as sysdba
 SQL> shutdown immediate
 SQL> exit
+```
 
 Datenbank Schritt für Schritt starten:
 
+```console
 1. $ sqlplus / as sysdba
 2. SQL> startup nomount          NOMOUNT-Phase
 3. SQL> alter database mount     MOUNT-Phase
 4. SQL> alter database open      OPEN-Phase
+```
 
 Kurzüberblick:
 
@@ -46,7 +52,9 @@ Controlfiles zeigen:         SQL> show parameter control_files;
 Einen User trotz restricted Mode die Nutzung der Datenbank erlauben:
 SQL> grant restricted session to <user>;
 
+# Wiederanfahren der Oracle-DB-VM
 
+* im Portal VM starten
 
 # Oracle-Linux 7 - Maschine
 
