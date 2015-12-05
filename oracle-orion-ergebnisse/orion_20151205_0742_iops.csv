@@ -1,0 +1,8 @@
+
+This comma-separated-value file contains the rates sustained by small I/Os in IOPS. 
+Each value corresponds to a data point test that used a fixed number of outstanding small and large I/Os. 
+The number of outstanding small I/Os for a value is specified by its column header in the first row. 
+The number of outstanding large I/Os for a value is specified by its row header in the first column. 
+
+Large/Small,      1,      2,      3,      4,      5,      6,      7,      8,      9,     10,     11,     12,     13,     14,     15,     16,     17,     18,     19,     20
+          0,   8504,  14747,  25670,  35633,  44799,  51961,  59623,  63585,  67826,  72578,  72647,  74036,  73334,  74885,  73731,  77349,  79082,  80908,  78530,  78882
