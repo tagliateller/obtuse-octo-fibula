@@ -306,3 +306,19 @@ die Datei muss in der orion.lun aufgeführt sein
 
 ## Start Orion
 [oracle@oradb ~]$ /u01/app/oracle/product/12.1.0/dbhome_1/bin/orion -run oltp -hugenotneeded
+
+## Weiteres Vorgehen
+
+Lt. o.g. Artikel:
+
+Die Datei mytest_20110510_2303_summary.txt stellt die Zusammenfassung des Tests dar und bietet einen Überblick über die Parametrisierung des Tests und die bereits oben beschriebenen maximal gemessenen Werte für large random/sequential I/O in MBPS, small random I/O in IOPS und die minimale Latenz für small random I/O. 
+
+... Datei anzeigen
+
+Die Datei mytest_20110510_2303_mbps.csv beinhaltet die durch Komma getrennten Werte für die erzielte Bandbreite. In dem Test, der hier als Beispiel dargestellt ist, sieht man eine zweidimensionale Matrix, aus der sich durch einen Import in Excel eine aussagekräftige Grafik erzeugen läßt. Die Kurven sollten sich bei einer sauber durchgeführten Kalibrierung asymptotisch einem Maximalwert annähern, wie in der Dokumentation mit synthetischen Werten dargestellt. Zur Erinnerung sei an dieser Stelle vermerkt, dass die hier gezeigte Messung auf einer virtuellen Umgebung erstellt wurde, auf der andere laufende virtuelle Maschinen das Ergebnis verfälschen. Trotzdem wird eine qualitativ gute Messung erreicht. An dem folgenden Bild sieht man, dass mit mehr ausstehenden large I/O die maximal erreichbaren Bandbreite schneller erreicht wird. Diese liegt bei gut 130MB/sec. 
+
+... Datei anzeigen
+
+Die Datei mytest_20110510_2303_iops.csv beinhaltet die durch Komma getrennten Werte für den Durchsatz. Auch hier läßt sich mit Hilfe von Excel eine Grafik erstellen. 
+
+Die dritte Datei mytest_20110510_2303_lat.csv enthält ebenfalls eine zweidimensionale Matrix mit Testergebnissen, die sich wie bereits oben beschrieben als Grafik aufbereiten lässt. 
