@@ -1,0 +1,251 @@
+
+
+TEST START
+
+Point 1 (small=0, large=0) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 109.88 us Count = 540358
+ran (small): nio=540358 nior=540358 niow=0 req w%=0 act w%=0
+ran (small): my   1 oth   0 iops 9019 lat 110 us, bw =  70.46 MBps dur  59.91 s size 8 K, min lat 52 us, max lat 396667 us READ 
+
+Point 2 (small=1, large=0) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 121.46 us Count = 490151
+ran (small): Index = 1  Avg Lat = 121.46 us Count = 490175
+ran (small): nio=980326 nior=980326 niow=0 req w%=0 act w%=0
+ran (small): my   2 oth   0 iops 16339 lat 121 us, bw = 127.65 MBps dur  60.00 s size 8 K, min lat 37 us, max lat 9741 us READ 
+
+Point 3 (small=2, large=0) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 113.45 us Count = 524377
+ran (small): Index = 1  Avg Lat = 113.42 us Count = 524494
+ran (small): Index = 2  Avg Lat = 113.46 us Count = 524361
+ran (small): nio=1573232 nior=1573232 niow=0 req w%=0 act w%=0
+ran (small): my   3 oth   0 iops 26221 lat 113 us, bw = 204.85 MBps dur  60.00 s size 8 K, min lat 36 us, max lat 10057 us READ 
+
+Point 4 (small=3, large=0) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 112.02 us Count = 530842
+ran (small): Index = 1  Avg Lat = 112.07 us Count = 530647
+ran (small): Index = 2  Avg Lat = 112.02 us Count = 530775
+ran (small): Index = 3  Avg Lat = 112.02 us Count = 530911
+ran (small): nio=2123175 nior=2123175 niow=0 req w%=0 act w%=0
+ran (small): my   4 oth   0 iops 35386 lat 112 us, bw = 276.46 MBps dur  60.00 s size 8 K, min lat 34 us, max lat 10075 us READ 
+
+Point 5 (small=4, large=0) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 116.67 us Count = 509785
+ran (small): Index = 1  Avg Lat = 116.69 us Count = 509840
+ran (small): Index = 2  Avg Lat = 116.60 us Count = 510198
+ran (small): Index = 3  Avg Lat = 116.66 us Count = 509952
+ran (small): Index = 4  Avg Lat = 116.61 us Count = 510100
+ran (small): nio=2549875 nior=2549875 niow=0 req w%=0 act w%=0
+ran (small): my   5 oth   0 iops 42499 lat 117 us, bw = 332.03 MBps dur  60.00 s size 8 K, min lat 41 us, max lat 10128 us READ 
+
+Point 6 (small=5, large=0) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 524.31 us Count = 114129
+ran (large): nio=114129 nior=114129 niow=0 req w%=0 act w%=0
+ran (large): my   1 oth   0 iops 1902 lat 524 us, bw = 1902.20 MBps dur  60.00 s size 1024 K, min lat 164 us, max lat 10350 us READ 
+
+Point 7 (small=0, large=1) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 135.02 us Count = 441008
+ran (small): nio=441008 nior=441008 niow=0 req w%=0 act w%=0
+ran (small): my   1 oth   1 iops 7350 lat 135 us, bw =  57.42 MBps dur  60.00 s size 8 K, min lat 43 us, max lat 8512 us READ 
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 400.27 us Count = 149490
+ran (large): nio=149490 nior=149490 niow=0 req w%=0 act w%=0
+ran (large): my   1 oth   1 iops 2491 lat 400 us, bw = 2491.55 MBps dur  60.00 s size 1024 K, min lat 165 us, max lat 10321 us READ 
+
+Point 8 (small=1, large=1) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 151.31 us Count = 393844
+ran (small): Index = 1  Avg Lat = 151.28 us Count = 393940
+ran (small): nio=787784 nior=787784 niow=0 req w%=0 act w%=0
+ran (small): my   2 oth   1 iops 13129 lat 151 us, bw = 102.58 MBps dur  60.00 s size 8 K, min lat 36 us, max lat 135414 us READ 
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 400.34 us Count = 149476
+ran (large): nio=149476 nior=149476 niow=0 req w%=0 act w%=0
+ran (large): my   1 oth   2 iops 2491 lat 400 us, bw = 2491.32 MBps dur  60.00 s size 1024 K, min lat 159 us, max lat 135536 us READ 
+
+Point 9 (small=2, large=1) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 155.04 us Count = 384338
+ran (small): Index = 1  Avg Lat = 154.94 us Count = 384640
+ran (small): Index = 2  Avg Lat = 155.03 us Count = 384384
+ran (small): nio=1153362 nior=1153362 niow=0 req w%=0 act w%=0
+ran (small): my   3 oth   1 iops 19223 lat 155 us, bw = 150.18 MBps dur  60.00 s size 8 K, min lat 35 us, max lat 10545 us READ 
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 389.37 us Count = 153686
+ran (large): nio=153686 nior=153686 niow=0 req w%=0 act w%=0
+ran (large): my   1 oth   3 iops 2561 lat 389 us, bw = 2561.49 MBps dur  60.00 s size 1024 K, min lat 161 us, max lat 10237 us READ 
+
+Point 10 (small=3, large=1) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 155.94 us Count = 382313
+ran (small): Index = 1  Avg Lat = 156.03 us Count = 382075
+ran (small): Index = 2  Avg Lat = 156.00 us Count = 382192
+ran (small): Index = 3  Avg Lat = 155.95 us Count = 382267
+ran (small): nio=1528847 nior=1528847 niow=0 req w%=0 act w%=0
+ran (small): my   4 oth   1 iops 25481 lat 156 us, bw = 199.07 MBps dur  60.00 s size 8 K, min lat 39 us, max lat 16125 us READ 
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 368.94 us Count = 162147
+ran (large): nio=162147 nior=162147 niow=0 req w%=0 act w%=0
+ran (large): my   1 oth   4 iops 2702 lat 369 us, bw = 2702.50 MBps dur  60.00 s size 1024 K, min lat 155 us, max lat 15916 us READ 
+
+Point 11 (small=4, large=1) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 371.66 us Count = 160974
+ran (large): nio=160974 nior=160974 niow=0 req w%=0 act w%=0
+ran (large): my   1 oth   5 iops 2682 lat 372 us, bw = 2682.99 MBps dur  60.00 s size 1024 K, min lat 156 us, max lat 42416 us READ 
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 165.62 us Count = 359909
+ran (small): Index = 1  Avg Lat = 165.59 us Count = 359953
+ran (small): Index = 2  Avg Lat = 165.42 us Count = 360345
+ran (small): Index = 3  Avg Lat = 165.75 us Count = 359564
+ran (small): Index = 4  Avg Lat = 165.47 us Count = 360234
+ran (small): nio=1800005 nior=1800005 niow=0 req w%=0 act w%=0
+ran (small): my   5 oth   1 iops 30000 lat 166 us, bw = 234.38 MBps dur  60.00 s size 8 K, min lat 29 us, max lat 42650 us READ 
+
+Point 12 (small=5, large=1) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 512.25 us Count = 116877
+ran (large): Index = 1  Avg Lat = 512.10 us Count = 116912
+ran (large): nio=233789 nior=233789 niow=0 req w%=0 act w%=0
+ran (large): my   2 oth   0 iops 3896 lat 512 us, bw = 3896.62 MBps dur  60.00 s size 1024 K, min lat 158 us, max lat 128078 us READ 
+
+Point 13 (small=0, large=2) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 180.75 us Count = 330052
+ran (small): nio=330052 nior=330052 niow=0 req w%=0 act w%=0
+ran (small): my   1 oth   2 iops 5500 lat 181 us, bw =  42.98 MBps dur  60.00 s size 8 K, min lat 46 us, max lat 66701 us READ 
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 445.93 us Count = 134201
+ran (large): Index = 1  Avg Lat = 445.66 us Count = 134287
+ran (large): nio=268488 nior=268488 niow=0 req w%=0 act w%=0
+ran (large): my   2 oth   1 iops 4474 lat 446 us, bw = 4474.91 MBps dur  60.00 s size 1024 K, min lat 161 us, max lat 66547 us READ 
+
+Point 14 (small=1, large=2) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 189.39 us Count = 314837
+ran (small): Index = 1  Avg Lat = 189.46 us Count = 314743
+ran (small): nio=629580 nior=629580 niow=0 req w%=0 act w%=0
+ran (small): my   2 oth   2 iops 10493 lat 189 us, bw =  81.98 MBps dur  60.00 s size 8 K, min lat 34 us, max lat 17154 us READ 
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 450.57 us Count = 132832
+ran (large): Index = 1  Avg Lat = 450.91 us Count = 132733
+ran (large): nio=265565 nior=265565 niow=0 req w%=0 act w%=0
+ran (large): my   2 oth   2 iops 4426 lat 451 us, bw = 4426.25 MBps dur  60.00 s size 1024 K, min lat 151 us, max lat 17318 us READ 
+
+Point 15 (small=2, large=2) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 192.50 us Count = 310030
+ran (small): Index = 1  Avg Lat = 192.47 us Count = 310091
+ran (small): Index = 2  Avg Lat = 192.26 us Count = 310356
+ran (small): nio=930477 nior=930477 niow=0 req w%=0 act w%=0
+ran (small): my   3 oth   2 iops 15508 lat 192 us, bw = 121.16 MBps dur  60.00 s size 8 K, min lat 37 us, max lat 85395 us READ 
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 447.44 us Count = 133757
+ran (large): Index = 1  Avg Lat = 448.13 us Count = 133544
+ran (large): nio=267301 nior=267301 niow=0 req w%=0 act w%=0
+ran (large): my   2 oth   3 iops 4455 lat 448 us, bw = 4455.25 MBps dur  60.00 s size 1024 K, min lat 164 us, max lat 85629 us READ 
+
+Point 16 (small=3, large=2) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 205.29 us Count = 290772
+ran (small): Index = 1  Avg Lat = 205.20 us Count = 290872
+ran (small): Index = 2  Avg Lat = 205.05 us Count = 291115
+ran (small): Index = 3  Avg Lat = 205.31 us Count = 290715
+ran (small): nio=1163474 nior=1163474 niow=0 req w%=0 act w%=0
+ran (small): my   4 oth   2 iops 19391 lat 205 us, bw = 151.50 MBps dur  60.00 s size 8 K, min lat 31 us, max lat 18091 us READ 
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 457.22 us Count = 130904
+ran (large): Index = 1  Avg Lat = 456.95 us Count = 130973
+ran (large): nio=261877 nior=261877 niow=0 req w%=0 act w%=0
+ran (large): my   2 oth   4 iops 4364 lat 457 us, bw = 4364.76 MBps dur  60.00 s size 1024 K, min lat 161 us, max lat 17556 us READ 
+
+Point 17 (small=4, large=2) of 18
+Valid small 1 Valid large 1
+Valid
+
+ran (large): VLun = 0 Size = 10485760
+ran (large): Index = 0  Avg Lat = 460.54 us Count = 129934
+ran (large): Index = 1  Avg Lat = 460.19 us Count = 130034
+ran (large): nio=259968 nior=259968 niow=0 req w%=0 act w%=0
+ran (large): my   2 oth   5 iops 4332 lat 460 us, bw = 4333.00 MBps dur  60.00 s size 1024 K, min lat 167 us, max lat 12317 us READ 
+
+ran (small): VLun = 0 Size = 10485760
+ran (small): Index = 0  Avg Lat = 218.05 us Count = 273891
+ran (small): Index = 1  Avg Lat = 218.30 us Count = 273582
+ran (small): Index = 2  Avg Lat = 217.56 us Count = 274519
+ran (small): Index = 3  Avg Lat = 217.92 us Count = 274062
+ran (small): Index = 4  Avg Lat = 217.82 us Count = 274203
+ran (small): nio=1370257 nior=1370257 niow=0 req w%=0 act w%=0
+ran (small): my   5 oth   2 iops 22838 lat 218 us, bw = 178.42 MBps dur  60.00 s size 8 K, min lat 38 us, max lat 11981 us READ 
+
+Point 18 (small=5, large=2) of 18
+Valid small 1 Valid large 1
+Valid
+
+
+
+TEST END
+

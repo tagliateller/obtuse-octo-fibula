@@ -1,0 +1,10 @@
+
+This comma-separated-value file contains the average latency sustained by small I/Os in microseconds. 
+Each value corresponds to a data point test that used a fixed number of outstanding small and large I/Os. 
+The number of outstanding small I/Os for a value is specified by its column header in the first row. 
+The number of outstanding large I/Os for a value is specified by its row header in the first column. 
+
+Large/Small,      1,      2,      3,      4,      5
+          0, 109.88, 121.46, 113.44, 112.03, 116.65
+          1, 135.02, 151.30, 155.00, 155.98, 165.57
+          2, 180.75, 189.43, 192.41, 205.21, 217.93

@@ -1,0 +1,9 @@
+
+This comma-separated-value file contains the rates sustained by large I/Os in MBps. 
+Each value corresponds to a data point test that used a fixed number of outstanding small and large I/Os. 
+The number of outstanding small I/Os for a value is specified by its column header in the first row. 
+The number of outstanding large I/Os for a value is specified by its row header in the first column. 
+
+Large/Small,      0,      1,      2,      3,      4,      5
+          1, 1902.20, 2491.55, 2491.32, 2561.49, 2702.50, 2682.99
+          2, 3896.62, 4474.91, 4426.25, 4455.25, 4364.76, 4333.00

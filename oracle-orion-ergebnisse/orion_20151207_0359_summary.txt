@@ -1,0 +1,58 @@
+ORION VERSION 12.1.0.1.0
+
+Command line:
+-run normal -hugenotneeded 
+
+These options enable these settings:
+Test: orion
+Small IO size: 8 KB
+Large IO size: 1024 KB
+IO types: small random IOs, large random IOs
+Sequential stream pattern: one LUN per stream 
+Writes: 0%
+Cache size: not specified
+Duration for each data point: 60 seconds
+Small Columns:,      0,      1,      2,      3,      4,      5
+Large Columns:,      0,      1,      2
+Total Data Points: 18
+
+Name: /u01/app/oracle/oradata/ora12c/mytestdbf.dbf	Size: 10485760
+1 files found.
+
+Maximum Large MBPS=4474.91 @ Small=1 and Large=2
+
+Maximum Small IOPS=42499 @ Small=5 and Large=0
+Small Read Latency: avg=117 us, min=41 us, max=10128 us, std dev=129 us @ Small=5 and Large=0
+
+Minimum Small Latency=109.88 usecs @ Small=1 and Large=0
+Small Read Latency: avg=110 us, min=52 us, max=396667 us, std dev=615 us @ Small=1 and Large=0
+Small Read / Write Latency Histogram @ Small=5 and Large=0
+	Latency:		# of IOs (read) 	 # of IOs (write) 
+        0 - 1		us:		0			0
+        2 - 4		us:		0			0
+        4 - 8		us:		0			0
+        8 - 16		us:		0			0
+       16 - 32		us:		0			0
+       32 - 64		us:		74457			0
+       64 - 128		us:		388370			0
+      128 - 256		us:		41791			0
+      256 - 512		us:		29097			0
+      512 - 1024	us:		5830			0
+     1024 - 2048	us:		413			0
+     2048 - 4096	us:		184			0
+     4096 - 8192	us:		144			0
+     8192 - 16384	us:		35			0
+    16384 - 32768	us:		27			0
+    32768 - 65536	us:		9			0
+    65536 - 131072	us:		0			0
+   131072 - 262144	us:		0			0
+   262144 - 524288	us:		1			0
+   524288 - 1048576	us:		0			0
+  1048576 - 2097152	us:		0			0
+  2097152 - 4194304	us:		0			0
+  4194304 - 8388608	us:		0			0
+  8388608 - 16777216	us:		0			0
+ 16777216 - 33554432	us:		0			0
+ 33554432 - 67108864	us:		0			0
+ 67108864 - 134217728	us:		0			0
+134217728 - 268435456	us:		0			0
