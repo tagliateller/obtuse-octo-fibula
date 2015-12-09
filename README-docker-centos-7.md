@@ -35,4 +35,6 @@ Der Tipp bringt also auch nichts:
 
 http://www.itzgeek.com/how-tos/linux/centos-how-tos/installing-docker-on-centos-7-rhel-7-fedora-21.html
 
+möglicherweise der Tipp mit firewalld ??
+
 
