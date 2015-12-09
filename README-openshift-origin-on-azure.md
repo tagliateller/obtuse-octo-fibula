@@ -113,3 +113,31 @@ Versuche docker.service zu starten
 
 Resultat: Timout, ggf. größere Maschine nutzen ?
 
+## mit der Standard_A2 - Maschine gleiches Problem:
+
+```console
+-- The result is failed.
+Dec 07 13:39:54 demov3-node1 systemd[1]: Unit docker-storage-setup.service entered failed state.
+Dec 07 13:39:54 demov3-node1 systemd[1]: Starting Docker Application Container Engine...
+-- Subject: Unit docker.service has begun with start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit docker.service has begun starting up.
+Dec 07 13:39:54 demov3-node1 docker[13328]: time="2015-12-07T13:39:54.839351600Z" level=info msg="Listening for HTTP on unix (/var/run/docker.sock)"
+Dec 07 13:39:54 demov3-node1 docker[13328]: time="2015-12-07T13:39:54.840236835Z" level=error msg="WARNING: No --storage-opt dm.thinpooldev specified, using loo
+Dec 07 13:40:03 demov3-node1 systemd-udevd[13336]: inotify_add_watch(7, /dev/dm-1, 10) failed: No such file or directory
+Dec 07 13:40:54 demov3-node1 systemd[1]: docker.service operation timed out. Terminating.
+Dec 07 13:40:58 demov3-node1 systemd[1]: Failed to start Docker Application Container Engine.
+-- Subject: Unit docker.service has failed
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit docker.service has failed.
+--
+-- The result is failed.
+Dec 07 13:40:58 demov3-node1 systemd[1]: Unit docker.service entered failed state.
+Dec 07 13:43:25 demov3-node1 sudo[13354]: azureuser : TTY=pts/0 ; PWD=/home/azureuser ; USER=root ; COMMAND=/bin/journalctl -xn
+lines 1-30/30 (END)
+```
+
