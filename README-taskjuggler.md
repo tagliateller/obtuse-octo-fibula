@@ -145,6 +145,25 @@ tj3client add test.tjp
 * Jenkins wird von git angetriggert und holt die geänderten Projektdateien ab
 * Jenkins lädt den tj3d neu
 
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo yum install jenkins
+
+[ec2-user@ip-172-31-27-36 symmetrical-couscous]$ sudo service jenkins start
+Starting Jenkins                                           [  OK  ]
+[ec2-user@ip-172-31-27-36 symmetrical-couscous]$ 
+
+
+GIT-Plugin installieren
+
+GIT-Repo in Job einbinden
+
+--> OK
+
+Shell-Tasks (Stop, Start, Add) anlegen
+Problem: im Path nicht verfügbar, keine Rechte zur Ausführung
+--> TaskJuggler so installieren, dass jeder Nutzer diesen aufrufen kann
+
 # Apache als Rev. Proxy installieren
 
 
