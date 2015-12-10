@@ -141,3 +141,42 @@ Dec 07 13:43:25 demov3-node1 sudo[13354]: azureuser : TTY=pts/0 ; PWD=/home/azur
 lines 1-30/30 (END)
 ```
 
+vi ./roles/docker/tasks/main.yml
+
+---
+# tasks file for docker
+# hack wg. centos 7.1, docker-version 1.8.x startet dort nicht
+- name: Install docker
+  action: "{{ ansible_pkg_mgr }} name=docker-1.7.1 state=present"
+
+- name: enable and start the docker service
+  service: name=docker enabled=yes state=started
+
+- include: udev_workaround.yml
+  when: docker_udev_workaround | default(False)
+~                                                                                                                                                             
+~                                        
+
+```
+GATHERING FACTS *************************************************************** 
+ok: [demov3-master.eastus.cloudapp.azure.com]
+
+TASK: [openshift_manage_node | Wait for Node Registration] ******************** 
+failed: [demov3-master.eastus.cloudapp.azure.com] => (item=demov3-node1.yjsnnmbktbxehpv2pm2xnqhtyb.bx.internal.cloudapp.net) => {"attempts": 20, "changed": true, "cmd": ["oc", "get", "node", "demov3-node1.yjsnnmbktbxehpv2pm2xnqhtyb.bx.internal.cloudapp.net"], "delta": "0:00:00.482568", "end": "2015-12-10 20:27:04.107312", "failed": true, "item": "demov3-node1.yjsnnmbktbxehpv2pm2xnqhtyb.bx.internal.cloudapp.net", "rc": 1, "start": "2015-12-10 20:27:03.624744", "warnings": []}
+stderr: Error from server: node "demov3-node1.yjsnnmbktbxehpv2pm2xnqhtyb.bx.internal.cloudapp.net" not found
+msg: Task failed as maximum retries was encountered
+failed: [demov3-master.eastus.cloudapp.azure.com] => (item=demov3-node2.yjsnnmbktbxehpv2pm2xnqhtyb.bx.internal.cloudapp.net) => {"attempts": 20, "changed": true, "cmd": ["oc", "get", "node", "demov3-node2.yjsnnmbktbxehpv2pm2xnqhtyb.bx.internal.cloudapp.net"], "delta": "0:00:00.497794", "end": "2015-12-10 20:29:32.031386", "failed": true, "item": "demov3-node2.yjsnnmbktbxehpv2pm2xnqhtyb.bx.internal.cloudapp.net", "rc": 1, "start": "2015-12-10 20:29:31.533592", "warnings": []}
+stderr: Error from server: node "demov3-node2.yjsnnmbktbxehpv2pm2xnqhtyb.bx.internal.cloudapp.net" not found
+msg: Task failed as maximum retries was encountered
+
+FATAL: all hosts have already failed -- aborting
+
+PLAY RECAP ******************************************************************** 
+           to retry, use: --limit @/home/ec2-user/config.retry
+
+demov3-master.cloudapp.azure.com : ok=0    changed=0    unreachable=1    failed=0   
+demov3-master.eastus.cloudapp.azure.com : ok=160  changed=42   unreachable=0    failed=1   
+demov3-node1.eastus.cloudapp.azure.com : ok=63   changed=25   unreachable=0    failed=0   
+demov3-node2.eastus.cloudapp.azure.com : ok=63   changed=25   unreachable=0    failed=0   
+localhost                  : ok=13   changed=0    unreachable=0    failed=0   
+```
