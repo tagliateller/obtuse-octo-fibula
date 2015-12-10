@@ -164,6 +164,8 @@ Shell-Tasks (Stop, Start, Add) anlegen
 Problem: im Path nicht verfügbar, keine Rechte zur Ausführung
 --> TaskJuggler so installieren, dass jeder Nutzer diesen aufrufen kann
 
+... oder zunächst mal als binäre Installation ?? gem install taskkjuggler
+
 # Apache als Rev. Proxy installieren
 
 
