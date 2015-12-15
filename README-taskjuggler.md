@@ -169,4 +169,10 @@ Problem: im Path nicht verfügbar, keine Rechte zur Ausführung
 # Apache als Rev. Proxy installieren
 
 
+# Neuinstallation auf ec2
+
+sudo yum -y update
+
+gem install taskjuggler
+
 
