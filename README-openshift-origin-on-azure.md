@@ -68,6 +68,21 @@ hostname auch zu lang:
 
 demov3-master.vi12zqpum53ulklztb1oznh1th.bx.internal.cloudapp.net
 
+## Lösung zu langer Hostname
+
+sudo hostname -f demov3-master.internal.net
+
+sudo vi /etc/hosts
+
+10.0.0.4 demov3-master.internal.net
+10.0.0.5 demov3-node1.internal.net
+10.0.0.6 demov3-node2.internal.net
+
+sudo rm /etc/resolv.conf
+
+sudo systemctl stop NetworkManager
+sudo systemctl restart network
+
 ## Versuche mit centos
 
 TASK: [docker | enable and start the docker service] ************************** 
