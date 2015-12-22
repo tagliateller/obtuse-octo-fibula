@@ -195,3 +195,5 @@ demov3-node1.eastus.cloudapp.azure.com : ok=63   changed=25   unreachable=0    f
 demov3-node2.eastus.cloudapp.azure.com : ok=63   changed=25   unreachable=0    failed=0   
 localhost                  : ok=13   changed=0    unreachable=0    failed=0   
 ```
+
+Der Hack geht jetzt auch nicht mehr, ggf. weil die repo die Docker-Version nicht mehr erhalten ? TODO: Docker vorab installieren, dann ansible laufen lassen.
