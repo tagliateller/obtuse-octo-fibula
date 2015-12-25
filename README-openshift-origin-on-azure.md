@@ -197,3 +197,120 @@ localhost                  : ok=13   changed=0    unreachable=0    failed=0
 ```
 
 Der Hack geht jetzt auch nicht mehr, ggf. weil die repo die Docker-Version nicht mehr erhalten ? TODO: Docker vorab installieren, dann ansible laufen lassen.
+
+## Test AWS (CentOS 7.0)
+
+[centos@ip-172-31-30-37 ~]$ sudo yum -y install docker
+Geladene Plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirror.symnds.com
+ * extras: mirror.trouble-free.net
+ * updates: mirror.vcu.edu
+Abhängigkeiten werden aufgelöst
+--> Transaktionsprüfung wird ausgeführt
+---> Paket docker.x86_64 0:1.8.2-10.el7.centos markiert, um installiert zu werden
+--> Abhängigkeit lvm2 >= 2.02.112 wird für Paket docker-1.8.2-10.el7.centos.x86_64 verarbeitet
+--> Abhängigkeit docker-selinux >= 1.8.2-10.el7.centos wird für Paket docker-1.8.2-10.el7.centos.x86_64 verarbeitet
+--> Transaktionsprüfung wird ausgeführt
+---> Paket docker-selinux.x86_64 0:1.8.2-10.el7.centos markiert, um installiert zu werden
+---> Paket lvm2.x86_64 7:2.02.130-5.el7 markiert, um installiert zu werden
+--> Abhängigkeit lvm2-libs = 7:2.02.130-5.el7 wird für Paket 7:lvm2-2.02.130-5.el7.x86_64 verarbeitet
+--> Abhängigkeit device-mapper-persistent-data >= 0.5.5-1 wird für Paket 7:lvm2-2.02.130-5.el7.x86_64 verarbeitet
+--> Abhängigkeit liblvm2app.so.2.2(Base)(64bit) wird für Paket 7:lvm2-2.02.130-5.el7.x86_64 verarbeitet
+--> Abhängigkeit libdevmapper-event.so.1.02(Base)(64bit) wird für Paket 7:lvm2-2.02.130-5.el7.x86_64 verarbeitet
+--> Abhängigkeit liblvm2app.so.2.2()(64bit) wird für Paket 7:lvm2-2.02.130-5.el7.x86_64 verarbeitet
+--> Abhängigkeit libdevmapper-event.so.1.02()(64bit) wird für Paket 7:lvm2-2.02.130-5.el7.x86_64 verarbeitet
+--> Transaktionsprüfung wird ausgeführt
+---> Paket device-mapper-event-libs.x86_64 7:1.02.107-5.el7 markiert, um installiert zu werden
+---> Paket device-mapper-persistent-data.x86_64 0:0.5.5-1.el7 markiert, um installiert zu werden
+--> Abhängigkeit libaio.so.1(LIBAIO_0.4)(64bit) wird für Paket device-mapper-persistent-data-0.5.5-1.el7.x86_64 verarbeitet
+--> Abhängigkeit libaio.so.1(LIBAIO_0.1)(64bit) wird für Paket device-mapper-persistent-data-0.5.5-1.el7.x86_64 verarbeitet
+--> Abhängigkeit libaio.so.1()(64bit) wird für Paket device-mapper-persistent-data-0.5.5-1.el7.x86_64 verarbeitet
+---> Paket lvm2-libs.x86_64 7:2.02.130-5.el7 markiert, um installiert zu werden
+--> Abhängigkeit device-mapper-event = 7:1.02.107-5.el7 wird für Paket 7:lvm2-libs-2.02.130-5.el7.x86_64 verarbeitet
+--> Transaktionsprüfung wird ausgeführt
+---> Paket device-mapper-event.x86_64 7:1.02.107-5.el7 markiert, um installiert zu werden
+---> Paket libaio.x86_64 0:0.3.109-13.el7 markiert, um installiert zu werden
+--> Abhängigkeitsauflösung beendet
+
+Abhängigkeiten aufgelöst
+
+==============================================================================================================================================================
+ Package                                            Arch                        Version                                     Paketquelle                 Größe
+==============================================================================================================================================================
+Installieren:
+ docker                                             x86_64                      1.8.2-10.el7.centos                         extras                       10 M
+Als Abhängigkeiten installiert:
+ device-mapper-event                                x86_64                      7:1.02.107-5.el7                            base                        167 k
+ device-mapper-event-libs                           x86_64                      7:1.02.107-5.el7                            base                        169 k
+ device-mapper-persistent-data                      x86_64                      0.5.5-1.el7                                 base                        350 k
+ docker-selinux                                     x86_64                      1.8.2-10.el7.centos                         extras                       63 k
+ libaio                                             x86_64                      0.3.109-13.el7                              base                         24 k
+ lvm2                                               x86_64                      7:2.02.130-5.el7                            base                        1.0 M
+ lvm2-libs                                          x86_64                      7:2.02.130-5.el7                            base                        872 k
+
+Transaktionsübersicht
+==============================================================================================================================================================
+Installieren  1 Paket (+7 Abhängige Pakete)
+
+Gesamte Downloadgröße: 13 M
+Installationsgröße: 52 M
+Downloading packages:
+(1/8): device-mapper-event-1.02.107-5.el7.x86_64.rpm                                                                                   | 167 kB  00:00:00     
+(2/8): device-mapper-event-libs-1.02.107-5.el7.x86_64.rpm                                                                              | 169 kB  00:00:00     
+(3/8): libaio-0.3.109-13.el7.x86_64.rpm                                                                                                |  24 kB  00:00:00     
+(4/8): docker-selinux-1.8.2-10.el7.centos.x86_64.rpm                                                                                   |  63 kB  00:00:00     
+(5/8): device-mapper-persistent-data-0.5.5-1.el7.x86_64.rpm                                                                            | 350 kB  00:00:00     
+(6/8): lvm2-libs-2.02.130-5.el7.x86_64.rpm                                                                                             | 872 kB  00:00:00     
+(7/8): lvm2-2.02.130-5.el7.x86_64.rpm                                                                                                  | 1.0 MB  00:00:00     
+(8/8): docker-1.8.2-10.el7.centos.x86_64.rpm                                                                                           |  10 MB  00:00:01     
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Gesamt                                                                                                                        5.1 MB/s |  13 MB  00:00:02     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installieren     : 7:device-mapper-event-libs-1.02.107-5.el7.x86_64                                                                                     1/8 
+  Installieren     : 7:device-mapper-event-1.02.107-5.el7.x86_64                                                                                          2/8 
+  Installieren     : 7:lvm2-libs-2.02.130-5.el7.x86_64                                                                                                    3/8 
+  Installieren     : libaio-0.3.109-13.el7.x86_64                                                                                                         4/8 
+  Installieren     : device-mapper-persistent-data-0.5.5-1.el7.x86_64                                                                                     5/8 
+  Installieren     : 7:lvm2-2.02.130-5.el7.x86_64                                                                                                         6/8 
+Created symlink from /etc/systemd/system/sysinit.target.wants/lvm2-lvmpolld.socket to /usr/lib/systemd/system/lvm2-lvmpolld.socket.
+  Installieren     : docker-selinux-1.8.2-10.el7.centos.x86_64                                                                                            7/8 
+  Installieren     : docker-1.8.2-10.el7.centos.x86_64                                                                                                    8/8 
+  Überprüfung läuft: 7:lvm2-2.02.130-5.el7.x86_64                                                                                                         1/8 
+  Überprüfung läuft: 7:lvm2-libs-2.02.130-5.el7.x86_64                                                                                                    2/8 
+  Überprüfung läuft: 7:device-mapper-event-1.02.107-5.el7.x86_64                                                                                          3/8 
+  Überprüfung läuft: docker-selinux-1.8.2-10.el7.centos.x86_64                                                                                            4/8 
+  Überprüfung läuft: device-mapper-persistent-data-0.5.5-1.el7.x86_64                                                                                     5/8 
+  Überprüfung läuft: docker-1.8.2-10.el7.centos.x86_64                                                                                                    6/8 
+  Überprüfung läuft: libaio-0.3.109-13.el7.x86_64                                                                                                         7/8 
+  Überprüfung läuft: 7:device-mapper-event-libs-1.02.107-5.el7.x86_64                                                                                     8/8 
+
+Installiert:
+  docker.x86_64 0:1.8.2-10.el7.centos                                                                                                                         
+
+Abhängigkeit installiert:
+  device-mapper-event.x86_64 7:1.02.107-5.el7     device-mapper-event-libs.x86_64 7:1.02.107-5.el7     device-mapper-persistent-data.x86_64 0:0.5.5-1.el7    
+  docker-selinux.x86_64 0:1.8.2-10.el7.centos     libaio.x86_64 0:0.3.109-13.el7                       lvm2.x86_64 7:2.02.130-5.el7                          
+  lvm2-libs.x86_64 7:2.02.130-5.el7              
+
+Komplett!
+[centos@ip-172-31-30-37 ~]$ 
+
+Gleicher Fehler auch in dieser Version !!
+
+## eig. Image Fedora / CentOS
+
+VirtualBox unterstützt nur 32bit-Linuxe ? Server 2012 !
+Wie kommt man zu einer vhd Datei ? Konvertierer ? Native Windows mit Windows Server 2012 ?
+
+## RHEL 7.2
+
+extras - repo muss enabled sein
+ergebnis ist aber identisch zu centos :-(
+
+## Folge genau http://blog.ranjandas.me/install-docker-1-8-x-on-centos-7/
+
+TODO
