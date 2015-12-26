@@ -313,4 +313,121 @@ ergebnis ist aber identisch zu centos :-(
 
 ## Folge genau http://blog.ranjandas.me/install-docker-1-8-x-on-centos-7/
 
-TODO
+sudo yum -y upgrade
+
+[centos@ip-172-31-24-221 ~]$ uname -a
+Linux ip-172-31-24-221 3.10.0-229.14.1.el7.x86_64 #1 SMP Tue Sep 15 15:05:51 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux
+[centos@ip-172-31-24-221 ~]$ 
+
+sudo vi /etc/yum.repos.d/docker.repo
+
+[docker]
+name=Docker Inc Yum repository
+baseurl=http://yum.dockerproject.org/repo/main/centos/7/
+enabled=1
+gpgkey=http://yum.dockerproject.org/gpg
+
+lt. blog: yum -y install docker-engine docker-selinux -> kollidiert mit vorhandenem docker-engine-selinux
+
+[centos@ip-172-31-24-221 ~]$ sudo yum -y install docker-engine docker-selinux
+Geladene Plugins: fastestmirror
+docker                                                                                                                                 | 2.9 kB  00:00:00     
+docker/primary_db                                                                                                                      | 8.2 kB  00:00:00     
+Loading mirror speeds from cached hostfile
+ * base: mirror.netdepot.com
+ * extras: linux.cc.lehigh.edu
+ * updates: mirrors.advancedhosters.com
+Abhängigkeiten werden aufgelöst
+--> Transaktionsprüfung wird ausgeführt
+---> Paket docker-engine.x86_64 0:1.9.1-1.el7.centos markiert, um installiert zu werden
+--> Abhängigkeit docker-engine-selinux >= 1.9.1-1.el7.centos wird für Paket docker-engine-1.9.1-1.el7.centos.x86_64 verarbeitet
+---> Paket docker-selinux.x86_64 0:1.8.2-10.el7.centos markiert, um installiert zu werden
+--> Transaktionsprüfung wird ausgeführt
+---> Paket docker-engine-selinux.noarch 0:1.9.1-1.el7.centos markiert, um installiert zu werden
+--> Konflikt wird verarbeitet: docker-engine-selinux-1.9.1-1.el7.centos.noarch kollidiert mit docker-selinux
+--> Abhängigkeitsauflösung beendet
+Fehler: docker-engine-selinux conflicts with docker-selinux-1.8.2-10.el7.centos.x86_64
+ Sie können versuchen, mit --skip-broken das Problem zu umgehen.
+ Sie könnten Folgendes versuchen: rpm -Va --nofiles --nodigest
+[centos@ip-172-31-24-221 ~]$ sudo yum -y install docker-engine docker-engine-selinux
+Geladene Plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirror.netdepot.com
+ * extras: linux.cc.lehigh.edu
+ * updates: mirrors.advancedhosters.com
+Abhängigkeiten werden aufgelöst
+--> Transaktionsprüfung wird ausgeführt
+---> Paket docker-engine.x86_64 0:1.9.1-1.el7.centos markiert, um installiert zu werden
+---> Paket docker-engine-selinux.noarch 0:1.9.1-1.el7.centos markiert, um installiert zu werden
+--> Abhängigkeitsauflösung beendet
+
+Abhängigkeiten aufgelöst
+
+==============================================================================================================================================================
+ Package                                       Arch                           Version                                    Paketquelle                    Größe
+==============================================================================================================================================================
+Installieren:
+ docker-engine                                 x86_64                         1.9.1-1.el7.centos                         docker                         8.2 M
+ docker-engine-selinux                         noarch                         1.9.1-1.el7.centos                         docker                          21 k
+
+Transaktionsübersicht
+==============================================================================================================================================================
+Installieren  2 Pakete
+
+Gesamte Downloadgröße: 8.2 M
+Installationsgröße: 36 M
+Downloading packages:
+Warnung: /var/cache/yum/x86_64/7/docker/packages/docker-engine-selinux-1.9.1-1.el7.centos.noarch.rpm: Header V4 RSA/SHA512 Signature, Schlüssel-ID 2c52609d: NOKEY
+Öffentlicher Schlüssel für docker-engine-selinux-1.9.1-1.el7.centos.noarch.rpm ist nicht installiert
+(1/2): docker-engine-selinux-1.9.1-1.el7.centos.noarch.rpm                                                                             |  21 kB  00:00:00     
+(2/2): docker-engine-1.9.1-1.el7.centos.x86_64.rpm                                                                                     | 8.2 MB  00:00:00     
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Gesamt                                                                                                                         16 MB/s | 8.2 MB  00:00:00     
+Schlüssel wird von http://yum.dockerproject.org/gpg geholt
+GPG-Schlüssel 0x2C52609D importieren:
+ Benutzerkennung     : "Docker Release Tool (releasedocker) <docker@docker.com>"
+ Fingerabdruck: 5811 8e89 f3a9 1289 7c07 0adb f762 2157 2c52 609d
+ Von       : http://yum.dockerproject.org/gpg
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installieren     : docker-engine-selinux-1.9.1-1.el7.centos.noarch                                                                                      1/2 
+  Installieren     : docker-engine-1.9.1-1.el7.centos.x86_64                                                                                              2/2 
+  Überprüfung läuft: docker-engine-selinux-1.9.1-1.el7.centos.noarch                                                                                      1/2 
+  Überprüfung läuft: docker-engine-1.9.1-1.el7.centos.x86_64                                                                                              2/2 
+
+Installiert:
+  docker-engine.x86_64 0:1.9.1-1.el7.centos                                 docker-engine-selinux.noarch 0:1.9.1-1.el7.centos                                
+
+Komplett!
+[centos@ip-172-31-24-221 ~]$ 
+
+[centos@ip-172-31-24-221 ~]$ sudo systemctl start docker.service
+[centos@ip-172-31-24-221 ~]$ sudo systemctl enable docker.service
+Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.
+[centos@ip-172-31-24-221 ~]$ 
+
+OK -> das sieht so aus, als ob es geht ...
+
+[centos@ip-172-31-24-221 ~]$ sudo systemctl status docker.service
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; vendor preset: disabled)
+   Active: active (running) since Sa 2015-12-26 10:53:54 UTC; 38s ago
+     Docs: https://docs.docker.com
+ Main PID: 31701 (docker)
+   CGroup: /system.slice/docker.service
+           └─31701 /usr/bin/docker daemon -H fd://
+
+Dez 26 10:53:47 ip-172-31-24-221 docker[31701]: time="2015-12-26T10:53:47.706843838Z" level=info msg="API listen on /var/run/docker.sock"
+Dez 26 10:53:47 ip-172-31-24-221 docker[31701]: time="2015-12-26T10:53:47.809033719Z" level=warning msg="Usage of loopback devices is strongly disc...ection."
+Dez 26 10:53:54 ip-172-31-24-221 docker[31701]: time="2015-12-26T10:53:54.308660687Z" level=warning msg="Running modprobe bridge br_netfilter failed with m...
+Dez 26 10:53:54 ip-172-31-24-221 docker[31701]: time="2015-12-26T10:53:54.409648125Z" level=info msg="Firewalld running: false"
+Dez 26 10:53:54 ip-172-31-24-221 docker[31701]: time="2015-12-26T10:53:54.723096789Z" level=info msg="Default bridge (docker0) is assigned with an ...address"
+Dez 26 10:53:54 ip-172-31-24-221 docker[31701]: time="2015-12-26T10:53:54.801866815Z" level=info msg="Loading containers: start."
+Dez 26 10:53:54 ip-172-31-24-221 docker[31701]: time="2015-12-26T10:53:54.802038246Z" level=info msg="Loading containers: done."
+Dez 26 10:53:54 ip-172-31-24-221 docker[31701]: time="2015-12-26T10:53:54.802064645Z" level=info msg="Daemon has completed initialization"
+Dez 26 10:53:54 ip-172-31-24-221 docker[31701]: time="2015-12-26T10:53:54.802081254Z" level=info msg="Docker daemon" commit=a34a1d5 execdriver=nati...on=1.9.1
+Dez 26 10:53:54 ip-172-31-24-221 systemd[1]: Started Docker Application Container Engine.
+Hint: Some lines were ellipsized, use -l to show in full.
+[centos@ip-172-31-24-221 ~]$ 
