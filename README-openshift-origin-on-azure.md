@@ -431,3 +431,40 @@ Dez 26 10:53:54 ip-172-31-24-221 docker[31701]: time="2015-12-26T10:53:54.802081
 Dez 26 10:53:54 ip-172-31-24-221 systemd[1]: Started Docker Application Container Engine.
 Hint: Some lines were ellipsized, use -l to show in full.
 [centos@ip-172-31-24-221 ~]$ 
+
+### alles noch einmal mit OpenLogic
+
+rbdocker71.cloudapp.net
+
+sudo yum -y upgrade
+
+[azureuser@rbdocker71 ~]$ uname -a
+Linux rbdocker71 3.10.0-229.7.2.el7.x86_64 #1 SMP Tue Jun 23 22:06:11 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux
+[azureuser@rbdocker71 ~]$ 
+
+sudo yum -y install docker-engine docker-engine-selinux
+
+[azureuser@rbdocker71 ~]$ sudo systemctl start docker.service
+[azureuser@rbdocker71 ~]$ sudo systemctl status docker
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+   Active: active (running) since Sa 2015-12-26 11:19:25 UTC; 11s ago
+     Docs: https://docs.docker.com
+ Main PID: 20945 (docker)
+   CGroup: /system.slice/docker.service
+           └─20945 /usr/bin/docker daemon -H fd://
+
+Dez 26 11:19:18 rbdocker71 docker[20945]: time="2015-12-26T11:19:18.851826300Z" level=info msg="API listen on /var/run/docker.sock"
+Dez 26 11:19:18 rbdocker71 docker[20945]: time="2015-12-26T11:19:18.951827300Z" level=warning msg="Usage of loopback devices is strongly discourag...section."
+Dez 26 11:19:25 rbdocker71 docker[20945]: time="2015-12-26T11:19:25.488673600Z" level=warning msg="Running modprobe bridge br_netfilter failed with message...
+Dez 26 11:19:25 rbdocker71 docker[20945]: time="2015-12-26T11:19:25.519210400Z" level=info msg="Firewalld running: false"
+Dez 26 11:19:25 rbdocker71 docker[20945]: time="2015-12-26T11:19:25.572877000Z" level=info msg="Default bridge (docker0) is assigned with an IP ad... address"
+Dez 26 11:19:25 rbdocker71 docker[20945]: time="2015-12-26T11:19:25.800385600Z" level=info msg="Loading containers: start."
+Dez 26 11:19:25 rbdocker71 docker[20945]: time="2015-12-26T11:19:25.801339300Z" level=info msg="Loading containers: done."
+Dez 26 11:19:25 rbdocker71 docker[20945]: time="2015-12-26T11:19:25.801364700Z" level=info msg="Daemon has completed initialization"
+Dez 26 11:19:25 rbdocker71 docker[20945]: time="2015-12-26T11:19:25.801396300Z" level=info msg="Docker daemon" commit=a34a1d5 execdriver=native-0....ion=1.9.1
+Dez 26 11:19:25 rbdocker71 systemd[1]: Started Docker Application Container Engine.
+Hint: Some lines were ellipsized, use -l to show in full.
+[azureuser@rbdocker71 ~]$ 
+
+
