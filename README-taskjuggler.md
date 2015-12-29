@@ -183,5 +183,33 @@ Test mit ad hoc:
 ```console
 [ec2-user@ip-172-31-53-132 ansible-taskjuggler]$ ansible servers -i tj3-inventory -m yum -a "name=* state=latest" -u azureuser --sudo
 ```
+hängt auch - versuche es mit direktem Aufruf von yum
+
+```console
+[ec2-user@ip-172-31-53-132 ansible-taskjuggler]$ ansible servers -i tj3-inventory -a "yum -y update" -u azureuser --sudo -vvvv
+```
+
+das schlägt unmittelbar fehl, da es Paketkonflikte gibt. Erneuter Versuch nun mit einer frischen Maschine ...
+
+```console
+[ec2-user@ip-172-31-53-132 ansible-taskjuggler]$ ansible servers -i tj3-inventory -a "yum -y update" -u azureuser --sudo -vvvv
+```
+
+OK - läuft so durch
+
+```console
+[ec2-user@ip-172-31-53-132 ansible-taskjuggler]$ ansible servers -i tj3-inventory -m yum -a "name=python-pycurl state=installed" -u azureuser --sudo -vvvv
+```
+OK
+
+```console
+[ec2-user@ip-172-31-53-132 ansible-taskjuggler]$ ansible servers -i tj3-inventory -m rpm_key -a "key=https://jenkins-ci.org/redhat/jenkins-ci.org.key state=present validate_certs=no" -u azureuser --sudo -vvvv
+```
+
+OK
+
+usw. - mal wieder komplettes Playbook laufen lassen ...
+
+
 
 
