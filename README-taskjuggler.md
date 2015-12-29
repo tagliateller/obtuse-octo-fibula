@@ -175,4 +175,13 @@ sudo yum -y update
 
 gem install taskjuggler
 
+# per Playbook
+
+- Problem: yum update geht nicht via ansible (1.9.4)
+Test mit ad hoc:
+
+```console
+[ec2-user@ip-172-31-53-132 ansible-taskjuggler]$ ansible servers -i tj3-inventory -m yum -a "name=* state=latest" -u azureuser --sudo
+```
+
 
