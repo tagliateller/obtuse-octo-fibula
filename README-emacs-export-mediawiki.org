@@ -1,0 +1,17 @@
+org-mode git clone
+in org-mode: make autoloads
+
+.emacs bearbeiten
+
+;; org-mode von den Quellen
+(add-to-list 'load-path "~/workspace/org-mode/lisp")
+(add-to-list 'load-path "~/workspace/org-mode/contrib/lisp" t)
+
+;; s.el wird für mediawiki benötigt
+(add-to-list 'load-path "~/workspace/s.el")
+(require 's)
+
+;; exporter für mediawiki
+(add-to-list 'load-path "~/workspace/orgmode-mediawiki")
+(require 'ox-mediawiki)
+
