@@ -1,6 +1,7 @@
 * Ausgangslage: vagrant + virtualbox unter windows installiert, ansible ist auf einer centos vm installiert
 * Vagrantfile in workspace/boxes/origin anlegen
 
+```
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 VAGRANTFILE_API_VERSION = "2"
@@ -72,7 +73,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 end
+```
 
 (quelle siehe openshift-ansible)
 
+vagrant plugin install vagrant-hostmanager
 vagrant up --no-provision
