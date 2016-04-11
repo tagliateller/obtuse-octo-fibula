@@ -478,3 +478,8 @@ router-1-4jkqe            1/1       Running            0          7m
 Vielleicht mit Wildfly + MySQL
 
 http://blog.arungupta.me/mysql-kubernetes-service-access-wildfly-pod-techtip72/
+
+## Aus der OpenShift Dokumentation
+
+https://github.com/openshift/origin/tree/master/examples/wordpress
+
