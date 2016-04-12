@@ -19,3 +19,8 @@ ja - z.B. mit virtualbox console master starten -> login geht, oc get nodes auf 
 
 *** Tutorials abarbeiten siehe paas/tutorials
 *** ManageIQ -> Monitoring klären
+
+## Weitere Schritte
+### Authenification
+
+sudo yum install httpd-tools
