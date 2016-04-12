@@ -14,5 +14,8 @@ node2                      : ok=101  changed=29   unreachable=0    failed=0
 
 ** TODO
 *** Hochfahren - geht das ?
+
+ja - z.B. mit virtualbox console master starten -> login geht, oc get nodes auf master zeigt nodes == notready an. Node starten mit vb console -> node == ready
+
 *** Tutorials abarbeiten siehe paas/tutorials
 *** ManageIQ -> Monitoring klären
