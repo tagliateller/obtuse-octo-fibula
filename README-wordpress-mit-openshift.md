@@ -483,3 +483,6 @@ http://blog.arungupta.me/mysql-kubernetes-service-access-wildfly-pod-techtip72/
 
 https://github.com/openshift/origin/tree/master/examples/wordpress
 
+## Test auf HP-NB mit OpenShift Installation
+
+
