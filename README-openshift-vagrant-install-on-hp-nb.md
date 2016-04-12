@@ -86,4 +86,37 @@ Apr 12 13:27:51 ose3-master.example.com origin-master[3418]: [710.525011ms] [2.1
 Apr 12 13:27:51 ose3-master.example.com origin-master[3418]: I0412 13:27:51.404077    3418 start_master.go:635] Started Origin Controllers
 Hint: Some lines were ellipsized, use -l to show in full.
 [vagrant@ose3-master master]$ 
+```
+## Integrated Docker Registry
+
+[vagrant@ose3-master master]$ sudo oadm registry --config=admin.kubeconfig --credentials=openshift-registry.kubeconfig 
+Flag --credentials has been deprecated, use --service-account to specify the service account the registry will use to make API calls
+deploymentconfig "docker-registry" created
+service "docker-registry" created
+[vagrant@ose3-master master]$ 
+
+TODO: Nach dem wiederanfahren war der Master nicht schedulable: 
+
+oadm manage-node ose3-master.example.com --schedulable=true
+
+OK, ist bereinigt
+
+[vagrant@ose3-master master]$ oc get nodes
+NAME                      STATUS                     AGE
+ose3-master.example.com   Ready,SchedulingDisabled   5d
+ose3-node1.example.com    Ready                      5d
+ose3-node2.example.com    Ready                      5d
+[vagrant@ose3-master master]$ oadm manage-node ose3-master.example.com --schedulable=true
+NAME                      STATUS    AGE
+ose3-master.example.com   Ready     5d
+[vagrant@ose3-master master]$ oc get nodes
+NAME                      STATUS    AGE
+ose3-master.example.com   Ready     5d
+ose3-node1.example.com    Ready     5d
+ose3-node2.example.com    Ready     5d
+
+OK, ggf. hier schauen: 
+
+https://github.com/openshift/training/blob/master/02-Installation-and-Scheduler.md#node-labels
+
 
