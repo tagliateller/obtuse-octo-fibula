@@ -270,8 +270,11 @@ robert@c3p0:~/workspace/openshift-ansible$ ansible-playbook -i origin-vagrant-hp
 
 ... geht auch nicht ...
 
---> siehe obere config - die ssh-ports müssen weggelassen werden 
+--> siehe obere config - die ssh-ports müssen weggelassen werden
 
+```
+export ANSIBLE_HOST_KEY_CHECKING=False
+```
 
 
 
