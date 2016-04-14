@@ -235,12 +235,42 @@ Apr 14 01:57:27 ose3-master.example.com origin-master[1114]: E0414 01:57:27.3026
 ## vagrant boxen hochfahren, rest der installation mit byo
 
 ```
+# Create an OSEv3 group that contains the masters and nodes groups
+[OSEv3:children]
+masters
+nodes
+
+# Set variables common for all OSEv3 hosts
+[OSEv3:vars]
+# SSH user, this user should allow ssh based auth without requiring a password
+ansible_ssh_user=vagrant
+
+# If ansible_ssh_user is not root, ansible_sudo must be set to true
+ansible_sudo=true
+
+product_type=openshift
+deployment_type=origin
+
+# uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/origin-passwd'}]
+
+# host group for masters
+[masters]
+master ansible_ssh_host=ose3-master.example.com
+
+# host group for nodes, includes region info
+[nodes]
+master ansible_ssh_host=ose3-master.example.com openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+node1 ansible_ssh_host=ose3-node1.example.com openshift_node_labels="{'region': 'primary', 'zone': 'east'}"
+node2 ansible_ssh_host=ose3-node2.example.com openshift_node_labels="{'region': 'primary', 'zone': 'west'}"
+
 ```
 
 robert@c3p0:~/workspace/openshift-ansible$ ansible-playbook -i origin-vagrant-hp-nb.inventory --private-key=~/.vagrant.d/insecure_private_key playbooks/byo/config.yml -vvvv
 
 ... geht auch nicht ...
 
+--> siehe obere config - die ssh-ports müssen weggelassen werden 
 
 
 
