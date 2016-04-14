@@ -485,4 +485,21 @@ https://github.com/openshift/origin/tree/master/examples/wordpress
 
 ## Test auf HP-NB mit OpenShift Installation
 
+https://github.com/openshift/origin/tree/master/examples/wordpress
 
+[vagrant@ose3-master ~]$ oc get pv
+NAME      CAPACITY   ACCESSMODES   STATUS    CLAIM                 REASON    AGE
+pv0001    1Gi        RWO,RWX       Bound     default/claim-wp                11m
+pv0002    5Gi        RWO           Bound     default/claim-mysql             11m
+[vagrant@ose3-master ~]$ oc get pvc
+NAME          STATUS    VOLUME    CAPACITY   ACCESSMODES   AGE
+claim-mysql   Bound     pv0002    5Gi        RWO           24m
+claim-wp      Bound     pv0001    1Gi        RWO,RWX       25m
+[vagrant@ose3-master ~]$ 
+
+
+[vagrant@ose3-master ~]$ oc create -f origin/examples/wordpress/pod-mysql.yaml
+pod "mysql" created
+[vagrant@ose3-master ~]$ 
+
+FEHLER: die Pods werden nicht erzeugt. Liegt vermutlich daran, dass die registry nicht geht ...
