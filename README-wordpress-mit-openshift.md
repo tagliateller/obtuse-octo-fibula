@@ -659,3 +659,12 @@ Bringing machine 'master' up with 'virtualbox' provider...
 ==> master: Machine not provisioned because `--no-provision` is specified.
 ```
 
+```
+[vagrant@ose3-master master]$ sudo oadm registry --config=admin.kubeconfig --credentials=openshift-registry.kubeconfig
+Flag --credentials has been deprecated, use --service-account to specify the service account the registry will use to make API calls
+deploymentconfig "docker-registry" created
+service "docker-registry" created
+[vagrant@ose3-master master]$ 
+```
+date gibt falsche Uhrzeit zurück --> vagrant ??
+
