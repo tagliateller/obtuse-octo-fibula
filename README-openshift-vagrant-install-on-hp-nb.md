@@ -276,5 +276,8 @@ robert@c3p0:~/workspace/openshift-ansible$ ansible-playbook -i origin-vagrant-hp
 export ANSIBLE_HOST_KEY_CHECKING=False
 ```
 
+git checkout 984645e9c6106d08608d88ee5f0fe9d4388dcf0f scheint den aktuellen Docker-Fehler zu beheben.
+
+
 
 
