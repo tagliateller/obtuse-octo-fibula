@@ -278,6 +278,73 @@ export ANSIBLE_HOST_KEY_CHECKING=False
 
 git checkout 984645e9c6106d08608d88ee5f0fe9d4388dcf0f scheint den aktuellen Docker-Fehler zu beheben.
 
+mit diesem Stand ist die Ausführung erfolgreich:
+
+PLAY RECAP ******************************************************************** 
+localhost                  : ok=21   changed=0    unreachable=0    failed=0   
+master                     : ok=322  changed=68   unreachable=0    failed=0   
+node1                      : ok=87   changed=29   unreachable=0    failed=0   
+node2                      : ok=87   changed=29   unreachable=0    failed=0   
+
+es fehlen wieder die Labels:
+
+[vagrant@ose3-master ~]$ oc get nodes
+NAME                      STATUS                     AGE
+ose3-master.example.com   Ready,SchedulingDisabled   23m
+ose3-node1.example.com    Ready                      23m
+ose3-node2.example.com    Ready                      23m
+[vagrant@ose3-master ~]$ 
+
+scheinen doch da zu sein, werden nur nicht angezeigt:
+
+[vagrant@ose3-master ~]$ oc get nodes --selector='region=infra'
+NAME                      STATUS                     AGE
+ose3-master.example.com   Ready,SchedulingDisabled   24m
+[vagrant@ose3-master ~]$ oc get nodes --selector='region=primary'
+NAME                     STATUS    AGE
+ose3-node1.example.com   Ready     24m
+ose3-node2.example.com   Ready     24m
+[vagrant@ose3-master ~]$ 
+
+Umstellung auf htpasswd während der Installation scheint geklappt zu haben ...
+
+[vagrant@ose3-master ~]$ sudo htpasswd /etc/origin/origin-passwd john
+New password: 
+Re-type new password: 
+Adding password for user john
+[vagrant@ose3-master ~]$ 
+
+Login in webconsole ist danach auch sofort möglich
+
+[vagrant@ose3-master ~]$ cd /etc/origin/master/
+[vagrant@ose3-master master]$ sudo oadm registry --config=admin.kubeconfig --credentials=openshift-registry.kubeconfig
+Flag --credentials has been deprecated, use --service-account to specify the service account the registry will use to make API calls
+deploymentconfig "docker-registry" created
+service "docker-registry" created
+[vagrant@ose3-master master]$ 
+
+es scheint so, dass bereits ein router deployt versucht wurde:
+
+[vagrant@ose3-master master]$ oc get pods
+NAME                       READY     STATUS              RESTARTS   AGE
+docker-registry-1-deploy   0/1       ContainerCreating   0          31s
+router-1-deploy            0/1       Pending             0          40m
+[vagrant@ose3-master master]$ oc get pods
+NAME                       READY     STATUS              RESTARTS   AGE
+docker-registry-1-deploy   0/1       ContainerCreating   0          40s
+router-1-deploy            0/1       Pending             0          40m
+[vagrant@ose3-master master]$ oc get pods
+NAME                       READY     STATUS              RESTARTS   AGE
+docker-registry-1-deploy   0/1       ContainerCreating   0          56s
+router-1-deploy            0/1       Pending             0          41m
+[vagrant@ose3-master master]$ oc get pods
+NAME                       READY     STATUS              RESTARTS   AGE
+docker-registry-1-deploy   0/1       ContainerCreating   0          1m
+router-1-deploy            0/1       Pending             0          41m
+
+
+
+
 
 
 
