@@ -231,8 +231,15 @@ Apr 14 01:57:19 ose3-master.example.com origin-master[1114]: E0414 01:57:19.5140
 Apr 14 01:57:27 ose3-master.example.com origin-master[1114]: E0414 01:57:27.302636    1114 login.go:162] Error authenticating "john" with provider "my_htpasswd_provider": user "john" cannot be claimed by identity "my_htpasswd_provider:john" because it is already mapped to [allow_all:john]
 
 ## nächster Versuch: wir folgen der Install-Routine, fahren master und nodes nicht herunter
+... :-(
+## vagrant boxen hochfahren, rest der installation mit byo
 
+```
+```
 
+robert@c3p0:~/workspace/openshift-ansible$ ansible-playbook -i origin-vagrant-hp-nb.inventory --private-key=~/.vagrant.d/insecure_private_key playbooks/byo/config.yml -vvvv
+
+... geht auch nicht ...
 
 
 
