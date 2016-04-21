@@ -400,6 +400,311 @@ Apr 21 14:40:38 ose3-node2.example.com forward-journal[16175]: time="2016-04-21T
 
 https://bugzilla.redhat.com/show_bug.cgi?id=1322077
 
+## router-1-deploy passt in keine region
+
+[vagrant@ose3-master ~]$ oc get nodes -o json
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+        {
+            "kind": "Node",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "ose3-master.example.com",
+                "selfLink": "/api/v1/nodes/ose3-master.example.com",
+                "uid": "fe0a30e1-07db-11e6-a0bc-525400b263eb",
+                "resourceVersion": "557",
+                "creationTimestamp": "2016-04-21T16:13:32Z",
+                "labels": {
+                    "kubernetes.io/hostname": "ose3-master.example.com",
+                    "region": "infra",
+                    "zone": "default"
+                }
+            },
+            "spec": {
+                "externalID": "ose3-master.example.com",
+                "unschedulable": true
+            },
+            "status": {
+                "capacity": {
+                    "cpu": "2",
+                    "memory": "1016736Ki",
+                    "pods": "110"
+                },
+                "allocatable": {
+                    "cpu": "2",
+                    "memory": "1016736Ki",
+                    "pods": "110"
+                },
+                "conditions": [
+                    {
+                        "type": "OutOfDisk",
+                        "status": "False",
+                        "lastHeartbeatTime": "2016-04-21T16:30:57Z",
+                        "lastTransitionTime": "2016-04-21T16:13:32Z",
+                        "reason": "KubeletHasSufficientDisk",
+                        "message": "kubelet has sufficient disk space available"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastHeartbeatTime": "2016-04-21T16:30:57Z",
+                        "lastTransitionTime": "2016-04-21T16:13:42Z",
+                        "reason": "KubeletReady",
+                        "message": "kubelet is posting ready status"
+                    }
+                ],
+                "addresses": [
+                    {
+                        "type": "LegacyHostIP",
+                        "address": "192.168.100.100"
+                    },
+                    {
+                        "type": "InternalIP",
+                        "address": "192.168.100.100"
+                    }
+                ],
+                "daemonEndpoints": {
+                    "kubeletEndpoint": {
+                        "Port": 10250
+                    }
+                },
+                "nodeInfo": {
+                    "machineID": "094e13ef7aba4afba796cad0697c19bf",
+                    "systemUUID": "881C7717-029E-47CA-BCA6-3582A4A7D28E",
+                    "bootID": "59265dee-1eae-4b61-a573-5aea720ced95",
+                    "kernelVersion": "3.10.0-327.13.1.el7.x86_64",
+                    "osImage": "CentOS Linux 7 (Core)",
+                    "containerRuntimeVersion": "docker://1.9.1",
+                    "kubeletVersion": "v1.2.0-36-g4a3f9c5",
+                    "kubeProxyVersion": "v1.2.0-36-g4a3f9c5"
+                },
+                "images": null
+            }
+        },
+        {
+            "kind": "Node",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "ose3-node1.example.com",
+                "selfLink": "/api/v1/nodes/ose3-node1.example.com",
+                "uid": "1f63345f-07de-11e6-a0bc-525400b263eb",
+                "resourceVersion": "558",
+                "creationTimestamp": "2016-04-21T16:28:47Z",
+                "labels": {
+                    "kubernetes.io/hostname": "ose3-node1.example.com",
+                    "region": "primary",
+                    "zone": "east"
+                }
+            },
+            "spec": {
+                "externalID": "ose3-node1.example.com"
+            },
+            "status": {
+                "capacity": {
+                    "cpu": "2",
+                    "memory": "1016736Ki",
+                    "pods": "110"
+                },
+                "allocatable": {
+                    "cpu": "2",
+                    "memory": "1016736Ki",
+                    "pods": "110"
+                },
+                "conditions": [
+                    {
+                        "type": "OutOfDisk",
+                        "status": "False",
+                        "lastHeartbeatTime": "2016-04-21T16:31:00Z",
+                        "lastTransitionTime": "2016-04-21T16:28:47Z",
+                        "reason": "KubeletHasSufficientDisk",
+                        "message": "kubelet has sufficient disk space available"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastHeartbeatTime": "2016-04-21T16:31:00Z",
+                        "lastTransitionTime": "2016-04-21T16:28:58Z",
+                        "reason": "KubeletReady",
+                        "message": "kubelet is posting ready status"
+                    }
+                ],
+                "addresses": [
+                    {
+                        "type": "LegacyHostIP",
+                        "address": "192.168.100.200"
+                    },
+                    {
+                        "type": "InternalIP",
+                        "address": "192.168.100.200"
+                    }
+                ],
+                "daemonEndpoints": {
+                    "kubeletEndpoint": {
+                        "Port": 10250
+                    }
+                },
+                "nodeInfo": {
+                    "machineID": "094e13ef7aba4afba796cad0697c19bf",
+                    "systemUUID": "E9F2F67A-05E9-4A04-BBAC-2BE0213E0D21",
+                    "bootID": "1681940c-2a61-41ca-aeab-2210840e77a2",
+                    "kernelVersion": "3.10.0-327.13.1.el7.x86_64",
+                    "osImage": "CentOS Linux 7 (Core)",
+                    "containerRuntimeVersion": "docker://1.9.1",
+                    "kubeletVersion": "v1.2.0-36-g4a3f9c5",
+                    "kubeProxyVersion": "v1.2.0-36-g4a3f9c5"
+                },
+                "images": null
+            }
+        },
+        {
+            "kind": "Node",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "ose3-node2.example.com",
+                "selfLink": "/api/v1/nodes/ose3-node2.example.com",
+                "uid": "22f0e484-07de-11e6-a0bc-525400b263eb",
+                "resourceVersion": "556",
+                "creationTimestamp": "2016-04-21T16:28:53Z",
+                "labels": {
+                    "kubernetes.io/hostname": "ose3-node2.example.com",
+                    "region": "primary",
+                    "zone": "west"
+                }
+            },
+            "spec": {
+                "externalID": "ose3-node2.example.com"
+            },
+            "status": {
+                "capacity": {
+                    "cpu": "2",
+                    "memory": "1016736Ki",
+                    "pods": "110"
+                },
+                "allocatable": {
+                    "cpu": "2",
+                    "memory": "1016736Ki",
+                    "pods": "110"
+                },
+                "conditions": [
+                    {
+                        "type": "OutOfDisk",
+                        "status": "False",
+                        "lastHeartbeatTime": "2016-04-21T16:30:54Z",
+                        "lastTransitionTime": "2016-04-21T16:28:53Z",
+                        "reason": "KubeletHasSufficientDisk",
+                        "message": "kubelet has sufficient disk space available"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastHeartbeatTime": "2016-04-21T16:30:54Z",
+                        "lastTransitionTime": "2016-04-21T16:29:03Z",
+                        "reason": "KubeletReady",
+                        "message": "kubelet is posting ready status"
+                    }
+                ],
+                "addresses": [
+                    {
+                        "type": "LegacyHostIP",
+                        "address": "192.168.100.201"
+                    },
+                    {
+                        "type": "InternalIP",
+                        "address": "192.168.100.201"
+                    }
+                ],
+                "daemonEndpoints": {
+                    "kubeletEndpoint": {
+                        "Port": 10250
+                    }
+                },
+                "nodeInfo": {
+                    "machineID": "094e13ef7aba4afba796cad0697c19bf",
+                    "systemUUID": "B77450E8-D9F8-4942-ACE7-89D96673EC92",
+                    "bootID": "11faad54-8304-4d85-94e6-782db168cc0b",
+                    "kernelVersion": "3.10.0-327.13.1.el7.x86_64",
+                    "osImage": "CentOS Linux 7 (Core)",
+                    "containerRuntimeVersion": "docker://1.9.1",
+                    "kubeletVersion": "v1.2.0-36-g4a3f9c5",
+                    "kubeProxyVersion": "v1.2.0-36-g4a3f9c5"
+                },
+                "images": null
+            }
+        }
+    ]
+}
+[vagrant@ose3-master ~]$ ^C
+[vagrant@ose3-master ~]$ oc describe pod router-1-deploy 
+Name:		router-1-deploy
+Namespace:	default
+Node:		/
+Labels:		openshift.io/deployer-pod-for.name=router-1
+Status:		Pending
+IP:		
+Controllers:	<none>
+Containers:
+  deployment:
+    Image:	openshift/origin-deployer:v1.1.6
+    Port:	
+    QoS Tier:
+      memory:	BestEffort
+      cpu:	BestEffort
+    Environment Variables:
+      KUBERNETES_MASTER:	https://ose3-master.example.com:8443
+      OPENSHIFT_MASTER:		https://ose3-master.example.com:8443
+      BEARER_TOKEN_FILE:	/var/run/secrets/kubernetes.io/serviceaccount/token
+      OPENSHIFT_CA_DATA:	-----BEGIN CERTIFICATE-----
+MIIC5jCCAdCgAwIBAgIBATALBgkqhkiG9w0BAQswJjEkMCIGA1UEAwwbb3BlbnNo
+aWZ0LXNpZ25lckAxNDYxMjU0ODkwMB4XDTE2MDQyMTE2MDgxMloXDTIxMDQyMDE2
+MDgxM1owJjEkMCIGA1UEAwwbb3BlbnNoaWZ0LXNpZ25lckAxNDYxMjU0ODkwMIIB
+IjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyLd3NK2alaCiHGPXcQizYt2v
+qR9WOGDRaai21cGnjHSkLhIEkrYhIJBfggd9k3pOmui8y1fzTSCj3jdqkDjN3/KB
+YR6boYW4hUYeOSB4nBMDbyvyRYQTYCiqOJEWKje17YggcSRxCnjMrZSPSSUJrM4n
+bGdLZKtWfrixFkMhVghuItmjOzxpX9iikbPY4y8gLivFrIM+EZz93z5bgJ5qEBvi
+IqDqTf22W7hBWQ6FppJEpsEGGRSwd3DyNexu4T/p2f1TZQE8+C+NuKb6iplhI+Rj
+4MMMNlN72P6nwIjkl8QD86znWF4FIm1Yvp0eK28G3hWX37REBTBEkSji3evezwID
+AQABoyMwITAOBgNVHQ8BAf8EBAMCAKQwDwYDVR0TAQH/BAUwAwEB/zALBgkqhkiG
+9w0BAQsDggEBACVSPzrbmuZKFhSg4Lmg8mcOf0Cs8YhBfFF/IX6FozXCOgZwEKT5
+CsXGznvun3cPmHClW1n/3qD6F2HEQ/Nh8tvRYbmxaQCYQ6u1GNLXwBy4naTjCrvo
+QjF4ABBfl3HNs8NMY54jGIMXkRfeS3DS4iTAJRuQnvHR6uEZ1QfvepElk6zpEn5g
+CpfEXB+WPZsU6yaYhEjt1ZusdHoEhMpS4YgaGQH5GtaUAVFgGhQeiNlUAQNJjSRX
+EzQ2wbCOjtYrVZqMVrxN7GcUpfa4vJc/AmmYT34FzHeOOaHuPNLOyLBVdh7C6evq
+3NGOem/bMgfoa/2KHasX7ci6WI9HCYpaG1U=
+-----END CERTIFICATE-----
+
+      OPENSHIFT_DEPLOYMENT_NAME:	router-1
+      OPENSHIFT_DEPLOYMENT_NAMESPACE:	default
+Volumes:
+  deployer-token-ns320:
+    Type:	Secret (a volume populated by a Secret)
+    SecretName:	deployer-token-ns320
+Events:
+  FirstSeen	LastSeen	Count	From			SubobjectPath	Type		Reason			Message
+  ---------	--------	-----	----			-------------	--------	------			-------
+  2m		1m		2	{default-scheduler }			Warning		FailedScheduling	pod (router-1-deploy) failed to fit in any node
+fit failure on node (ose3-node1.example.com): Region
+fit failure on node (ose3-node2.example.com): Region
+
+  2m	16s	4	{default-scheduler }		Warning	FailedScheduling	pod (router-1-deploy) failed to fit in any node
+fit failure on node (ose3-node1.example.com): MatchNodeSelector
+fit failure on node (ose3-node2.example.com): Region
+
+  2m	13s	3	{default-scheduler }		Warning	FailedScheduling	pod (router-1-deploy) failed to fit in any node
+fit failure on node (ose3-node1.example.com): MatchNodeSelector
+fit failure on node (ose3-node2.example.com): MatchNodeSelector
+
+  1m	9s	2	{default-scheduler }		Warning	FailedScheduling	pod (router-1-deploy) failed to fit in any node
+fit failure on node (ose3-node1.example.com): Region
+fit failure on node (ose3-node2.example.com): MatchNodeSelector
+
+  1s	1s	1	{default-scheduler }		Warning	FailedScheduling	pod (router-1-deploy) failed to fit in any node
+fit failure on node (ose3-node2.example.com): Region
+fit failure on node (ose3-node1.example.com): Region
+
+
 
 
 
