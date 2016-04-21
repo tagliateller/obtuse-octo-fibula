@@ -342,6 +342,35 @@ NAME                       READY     STATUS              RESTARTS   AGE
 docker-registry-1-deploy   0/1       ContainerCreating   0          1m
 router-1-deploy            0/1       Pending             0          41m
 
+## docker status node 2
+
+[vagrant@ose3-node2 ~]$ sudo systemctl status docker.service
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; vendor preset: disabled)
+  Drop-In: /usr/lib/systemd/system/docker.service.d
+           └─docker-sdn-ovs.conf
+   Active: active (running) since Do 2016-04-21 14:34:47 GMT-2; 4min 47s ago
+     Docs: http://docs.docker.com
+ Main PID: 16173 (sh)
+   Memory: 99.7M
+   CGroup: /system.slice/docker.service
+           ├─16173 /bin/sh -c /usr/bin/docker daemon $OPTIONS            $DOCKER_STORAGE_OPTIONS            $DOCKER_NETWORK_OPTIONS            $ADD_REGISTRY          ...
+           ├─16174 /usr/bin/docker daemon --selinux-enabled --insecure-registry=172.30.0.0/16 -b=lbr0 --mtu=1450 --add-registry registry.access.redhat.com
+           └─16175 /usr/bin/forward-journald -tag docker
+
+Apr 21 14:38:18 ose3-node2.example.com forward-journal[16175]: time="2016-04-21T14:38:18.052308634+02:00" level=error msg="HTTP Error" err="No such image: ope...Code=404
+Apr 21 14:38:18 ose3-node2.example.com forward-journal[16175]: time="2016-04-21T14:38:18.054970868+02:00" level=info msg="{Action=create, LoginUID=4294967295,...=15997}"
+Apr 21 14:38:19 ose3-node2.example.com forward-journal[16175]: time="2016-04-21T14:38:19.099162022+02:00" level=warning msg="Error getting v2 registry: endpoi... v2 API"
+Apr 21 14:38:28 ose3-node2.example.com forward-journal[16175]: time="2016-04-21T14:38:28.512784307+02:00" level=info msg="{Action=create, LoginUID=4294967295,...=15997}"
+Apr 21 14:38:28 ose3-node2.example.com forward-journal[16175]: time="2016-04-21T14:38:28.856759818+02:00" level=info msg="{Action=start, ID=85125e8cd1d8057e23...e, OpenS
+Apr 21 14:38:29 ose3-node2.example.com forward-journal[16175]: 2016/04/21 14:38:29 http: multiple response.WriteHeader calls
+Apr 21 14:38:29 ose3-node2.example.com forward-journal[16175]: time="2016-04-21T14:38:29.600584446+02:00" level=error msg="Handler for GET /images/openshift/o...:v1.1.6"
+Apr 21 14:38:29 ose3-node2.example.com forward-journal[16175]: time="2016-04-21T14:38:29.600653921+02:00" level=error msg="HTTP Error" err="No such image: ope...Code=404
+Apr 21 14:38:29 ose3-node2.example.com forward-journal[16175]: time="2016-04-21T14:38:29.603576501+02:00" level=info msg="{Action=create, LoginUID=4294967295,...=15997}"
+Apr 21 14:38:30 ose3-node2.example.com forward-journal[16175]: time="2016-04-21T14:38:30.557015134+02:00" level=warning msg="Error getting v2 registry: endpoi... v2 API"
+Hint: Some lines were ellipsized, use -l to show in full.
+
+
 
 
 
