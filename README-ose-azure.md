@@ -1,7 +1,21 @@
 # Install Azure CLI on Client
 
+## Debian
+
 $ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
+$ sudo npm install azure-cli -g
+
+## CentOS
+
+$ curl --silent --location https://rpm.nodesource.com/setup_4.x | sudo bash -
+$ sudo yum -y install nodejs
+$ sudo npm install azure-cli -g
+
+## CentOS
+
+$ curl --silent --location https://rpm.nodesource.com/setup_4.x | sudo bash -
+$ sudo yum -y install nodejs
 $ sudo npm install azure-cli -g
 
 $ azure login
