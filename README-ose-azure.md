@@ -109,4 +109,8 @@ Do the above facts look correct? [y/N]: N
 
 Edit /home/azure/.config/openshift/installer.cfg.yml with the desired values and run `atomic-openshift-installer --unattended install` to restart the install.
 
+# Installation mit ansible
+
+$ export ANSIBLE_HOST_KEY_CHECKING=False
+
 
