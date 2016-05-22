@@ -114,4 +114,9 @@ sudo gitlab-ctl reconfigure
 
 # Lauf geerlingguy.gitlab mit 2GB RAM
 
+Y RECAP *********************************************************************
+default                    : ok=13   changed=9    unreachable=0    failed=0
+
+OK - mit etwas mehr RAM läuft das durch ...
+
 
